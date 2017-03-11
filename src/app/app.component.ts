@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    selector: 'wg-root',
+    template: `
+<div class="container">
+
+        <div id="invit-container">
+            
+        </div>
+</div>
+    `,
+    styles: [`
+    
+    `]
 })
 export class AppComponent {
-  title = 'app works!';
+    title = 'app works!';
 }
