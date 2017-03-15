@@ -1,8 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 
-#invit-container {
-    width:298px;
-    height:420px;
-    background: url("assets/paper_sheet.png") no-repeat center fixed;
-    background-size: 100% 100%; /* version standardisée */
+$yellow: #DDC976;
+
+nav {
+    background: url(assets/fanion.svg) no-repeat center center;
+    background-size: auto 35px; /* version standardisée */
+    height: 60px;
+}
+
+.bg-yellow {
+    background-color: $yellow;
 }
