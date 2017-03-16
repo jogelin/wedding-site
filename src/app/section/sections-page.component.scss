@@ -1,0 +1,15 @@
+$yellow: #DDC976;
+
+.bg-yellow {
+    background-color: $yellow;
+}
+
+nav {
+    background: url(../../assets/fanion.svg) no-repeat center center;
+    background-size: auto 35px; /* version standardisée */
+    height: 60px;
+}
+
+wg-section {
+    padding: 5rem 0.5rem;
+}

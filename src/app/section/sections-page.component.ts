@@ -2,29 +2,23 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'wg-sections-page',
-    styles: [`
-        wg-section {
-            padding: 3rem 0.5rem;
-        }
-    `],
+    styleUrls: ['sections-page.component.scss'],
     template: `
-
-
-
-        <div class="row">   
-            <div class="col">
-                <wg-section>
-                    <img src="assets/fanion.svg" class="img-fluid" alt="Responsive image">
-                </wg-section>
+        <nav class="navbar bg-yellow"></nav>
+        <wg-section [bg]="'bg-yellow'">
+            <div class="row">
+                <div class="col">
+                    <img src="assets/aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
+                </div>
             </div>
-        </div>
-        <div class="row">   
-            <div class="col">
-                <wg-section>
-                    <img src="assets/fanion.svg" class="img-fluid" alt="Responsive image">
-                </wg-section>
+        </wg-section>
+        <wg-section [bg]="'bg-yellow'">
+            <div class="row">
+                <div class="col">
+                    <img src="assets/invit.svg" class="img-fluid" alt="Responsive image">
+                </div>
             </div>
-        </div>
+        </wg-section>
     `
 })
 export class SectionsPageComponent {

@@ -1,12 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
     selector: 'wg-section',
     template: `
-        <section>
-            <ng-content></ng-content>
+        <section [ngClass]="bg">
+            <div class="container">
+                <ng-content></ng-content>
+            </div>
         </section>
     `
 })
 export class SectionComponent {
+    @Input() bg: string;
 }

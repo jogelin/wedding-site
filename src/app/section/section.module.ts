@@ -2,6 +2,7 @@ import {NgModule} from "@angular/core";
 import {SectionComponent} from "./section.component";
 import {SectionsPageComponent} from "./sections-page.component";
 import {NgsRevealModule} from "ng-scrollreveal";
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -9,7 +10,8 @@ import {NgsRevealModule} from "ng-scrollreveal";
         SectionsPageComponent
     ],
     imports: [
-        NgsRevealModule
+        NgsRevealModule,
+        CommonModule
     ],
     exports: [
         SectionsPageComponent
