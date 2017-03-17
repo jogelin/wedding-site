@@ -1,15 +1,21 @@
-$yellow: #DDC976;
-
-.bg-yellow {
-    background-color: $yellow;
-}
+@import "../../variables";
 
 nav {
-    background: url(../../assets/fanion.svg) no-repeat center center;
+    background: $yellow url(../../assets/fanion.svg) no-repeat center center;
     background-size: auto 35px; /* version standardisée */
     height: 60px;
 }
 
-wg-section {
-    padding: 5rem 0.5rem;
+:host /deep/ #aline-et-jonathan {
+    background-color: $yellow;
+    height: 100%;
+    min-height: 100%;
+    .container {
+        display:flex;
+        align-items:center;
+    }
+}
+
+:host /deep/ #vous-invit {
+    padding: 5rem 0;
 }

@@ -3,13 +3,12 @@ import {Component, Input} from '@angular/core';
 @Component({
     selector: 'wg-section',
     template: `
-        <section [ngClass]="bg">
-            <div class="container">
-                <ng-content></ng-content>
-            </div>
+        <section [id]="idi" [ngClass]="bg">
+            <ng-content></ng-content>
         </section>
     `
 })
 export class SectionComponent {
     @Input() bg: string;
+    @Input() idi: string;
 }
