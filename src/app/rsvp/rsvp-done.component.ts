@@ -7,8 +7,8 @@ import {Rsvp, RsvpService} from "./rsvp.service";
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">
                 RSVP envoyée!
-                <span *ngIf="rsvp.confirmed">Confirmed</span>
-                <span *ngIf="!rsvp.confirmed">Cancelled</span>
+                <span class="badge badge-success" *ngIf="rsvp.confirmed">Confirmed</span>
+                <span class="badge badge-danger" *ngIf="!rsvp.confirmed">Cancelled</span>
             </h4>
             <p>
                 
