@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { environment } from '../../environments/environment';
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -24,12 +25,12 @@ import { environment } from '../../environments/environment';
         <section id="where">
             <div class="container">
                 <div class="row mb-4">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
                         <img src="../../assets/vous_invit.svg" class="img-fluid" alt="Responsive image">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col-sm-12 col-md-10 offset-md-1">
                         <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image">
                     </div>
                 </div>
@@ -117,6 +118,5 @@ export class SectionsPageComponent implements OnInit {
         } else {
             this.tadam = this.tadaam = this.tadaaam = true;
         }
-
     }
 }

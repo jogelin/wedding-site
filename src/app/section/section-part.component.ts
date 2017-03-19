@@ -19,6 +19,6 @@ import {Component, Input} from '@angular/core';
         </section>
     `
 })
-export class SectionComponent {
+export class SectionPartComponent {
     @Input() idi: string;
 }

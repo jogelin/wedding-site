@@ -1,22 +1,22 @@
 import {NgModule} from "@angular/core";
-import {SectionComponent} from "./section.component";
 import {SectionsPageComponent} from "./sections-page.component";
 import {NgsRevealModule} from "ng-scrollreveal";
-import {CommonModule} from '@angular/common';
-import {ReactiveFormsModule} from "@angular/forms";
-import {SectionRSVPComponent} from "./rsvp.component";
+import {SectionPartComponent} from "./section-part.component";
+import {SectionRsvpComponent} from "./section-rsvp.component";
+import {CommonModule} from "@angular/common";
+import {RsvpModule} from "../rsvp/rsvp.module";
 
 
 @NgModule({
     declarations: [
-        SectionComponent,
-        SectionRSVPComponent,
+        SectionPartComponent,
+        SectionRsvpComponent,
         SectionsPageComponent,
     ],
     imports: [
         NgsRevealModule,
         CommonModule,
-        ReactiveFormsModule
+        RsvpModule
     ],
     exports: [
         SectionsPageComponent
