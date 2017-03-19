@@ -1,21 +1,59 @@
-@import "../../variables";
+$bgHome: #DDC976;
+$bgWhere: #FFFFFF;
+$bgCivil: #829FAF;
+$bgCeleb: #82AD99;
+$bgSoiree: #1D213A;
+$bgRsvp: #FFFFFF;
+$bgGift: #FAFAFA;
+$bgContact: #1D213A;
 
-nav {
-    background: $yellow url(../../assets/fanion.svg) no-repeat center center;
+#fanion {
+    background: $bgHome url(../../assets/fanion.svg) no-repeat center center;
     background-size: auto 35px; /* version standardisée */
-    height: 60px;
+    height: 70px;
+    min-height: 70px;
+
 }
 
-:host /deep/ #aline-et-jonathan {
-    background-color: $yellow;
+#aline-et-jonathan {
+    background-color: $bgHome;
     height: 100%;
     min-height: 100%;
-    .container {
-        display:flex;
-        align-items:center;
-    }
 }
 
-:host /deep/ #vous-invit {
+#where, :host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp, #gift {
     padding: 5rem 0;
+}
+
+#where {
+    background-color: $bgWhere;
+}
+
+:host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree {
+    color: white;
+}
+
+:host /deep/ #civil {
+    background-color: $bgCivil;
+}
+
+:host /deep/ #celeb {
+    background-color: $bgCeleb;
+}
+
+:host /deep/ #soiree {
+    background-color: $bgSoiree;
+}
+
+:host /deep/ #rsvp {
+    background-color: $bgRsvp;
+}
+
+#gift {
+    background-color: $bgGift;
+}
+
+#contact {
+    background-color: $bgContact;
+    padding: 1rem 0;
 }

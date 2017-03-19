@@ -6,8 +6,7 @@ import {Component} from '@angular/core';
     
     `],
     template: `        
-        <!--<div class="h-100" ngsRevealSet [ngsSelector]="'.row'"> -->
-        <div class="h-100"> 
+        <div class="h-100" ngsRevealSet [ngsSelector]="'.row'"> 
             <wg-sections-page></wg-sections-page>
         </div>
 
