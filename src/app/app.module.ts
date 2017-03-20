@@ -21,7 +21,7 @@ export const firebaseConfig = {
         BrowserModule,
         SectionModule,
         NgsRevealModule.forRoot(),
-        AngularFireModule.initializeApp(firebaseConfig),
+        AngularFireModule.initializeApp(firebaseConfig)
 
     ],
     providers: [],

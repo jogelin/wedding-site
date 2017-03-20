@@ -6,7 +6,7 @@ import {FirebaseListObservable, AngularFire} from "angularfire2";
 import {Observable, BehaviorSubject} from "rxjs";
 
 
-export interface Rsvp {
+export class Rsvp {
     $key: string;
     name: string;
     email: string;

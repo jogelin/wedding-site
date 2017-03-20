@@ -1,8 +1,8 @@
 $bgHome: #DDC976;
 $bgWhere: #FFFFFF;
-$bgCivil: #829FAF;
+$bgCivil: #78989B;
 $bgCeleb: #82AD99;
-$bgSoiree: #1D213A;
+$bgSoiree: #34434C;
 $bgRsvp: #FFFFFF;
 $bgGift: #FAFAFA;
 $bgContact: #1D213A;
@@ -31,6 +31,7 @@ $bgContact: #1D213A;
 
 :host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree {
     color: white;
+    text-align: center;
 }
 
 :host /deep/ #civil {
@@ -56,4 +57,21 @@ $bgContact: #1D213A;
 #contact {
     background-color: $bgContact;
     padding: 1rem 0;
+}
+
+:host /deep/ .btn-primary {
+    color: #fff;
+    background-color: $bgCeleb;
+    border-color: $bgCeleb;
+}
+
+:host /deep/ .alert-success {
+    background-color: $bgCivil;
+    border-color: $bgCivil;
+    color: white;
+}
+:host /deep/ .badge-success {
+    background-color: $bgHome;
+    border-color: $bgHome;
+    color: white;
 }

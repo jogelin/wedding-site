@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Pompiere');
+
 html, body {
     height: 100%;
     margin:0;
@@ -7,6 +9,6 @@ html, body {
 
 body {
     background: #FFFFFF;
-    font-size: 14px;
-    font-family: "Segoe Print", serif;
+    font-size: 24px;
+    font-family: 'Pompiere', cursive;
 }

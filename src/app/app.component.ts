@@ -6,11 +6,11 @@ import {Component} from '@angular/core';
     
     `],
     template: `        
-        <div class="h-100" ngsRevealSet [ngsSelector]="'.row'"> 
-            <wg-sections-page></wg-sections-page>
-        </div>
+        <!--<div class="h-100" ngsRevealSet [ngsSelector]="'.row'"> -->
+            <!--<wg-sections-page></wg-sections-page>-->
+        <!--</div>-->
 
-
+UNDER CONSTRUCTION
         
     `
 })

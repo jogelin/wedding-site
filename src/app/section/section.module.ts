@@ -5,18 +5,24 @@ import {SectionPartComponent} from "./section-part.component";
 import {SectionRsvpComponent} from "./section-rsvp.component";
 import {CommonModule} from "@angular/common";
 import {RsvpModule} from "../rsvp/rsvp.module";
+import {SectionInfosComponent} from "./section-infos.component";
+import { AgmCoreModule } from 'angular2-google-maps/core';
 
 
 @NgModule({
     declarations: [
         SectionPartComponent,
         SectionRsvpComponent,
+        SectionInfosComponent,
         SectionsPageComponent,
     ],
     imports: [
         NgsRevealModule,
         CommonModule,
-        RsvpModule
+        RsvpModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyBFb9msSny826dPVGG0E_YzczhC7DiXiw4'
+        })
     ],
     exports: [
         SectionsPageComponent

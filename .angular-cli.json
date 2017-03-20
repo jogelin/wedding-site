@@ -19,7 +19,7 @@
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "wg",
             "styles": [
-                "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+                "../node_modules/bootstrap/scss/bootstrap.scss",
                 "styles.scss"
             ],
             "scripts": [

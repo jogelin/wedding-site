@@ -44,24 +44,19 @@ import {Observable} from "rxjs";
                 <div class="col-sm-4">
                     Essayer au maximum de covoiturer car il faudra se garer aux alentours (plus de détails prochainement)
                 </div>
-                <div class="col-sm-4"> 
+                <div class="col-sm-4">
+                    <h3>Infos Pratiques</h3>
                     Ensuite nous irons directement à la verrerie manger un bout en attendant la cérémonie
                 </div>
             </div>
         </wg-section-part>  
         <wg-section-part idi="celeb" *ngIf="tadaam">
             <div class="row">
-                <div class="col-sm-4">
-                    La cérémonie se déroulera dans le bois de la houssière. 
-                </div>
-                <div class="col-sm-4">
-                    Il y a un parking prévu mais essayer au maximum de covoiturer car le parking est petit. Vous pouvez vous regrouper au parking de la gare avant pour laisser les voitures en trop.
-                </div>
-                <div class="col-sm-4">
-                    Prenez des chaussures de marche ou des bottes si il pleut !
-                </div>
-                <div class="col-sm-4"> 
-                    Ensuite nous irons directement à la verrerie pour boire un verre, manger et passer une chouette fin de journée
+                <div class="col-sm-12">
+                    <p>La cérémonie se déroulera dans le bois de la houssière à Braine-le-compte. </p>
+                    <p>Il y a un parking prévu mais essayer au maximum de covoiturer car le parking est petit. Vous pouvez vous regrouper au parking de la gare avant pour laisser les voitures en trop.</p>
+                    <p>Prenez des chaussures de marche ou des bottes si il pleut !</p>
+                    <p>Ensuite nous irons directement à la verrerie pour boire un verre, manger et passer une chouette fin de journée</p>
                 </div>
             </div>
         </wg-section-part>  
@@ -88,6 +83,7 @@ import {Observable} from "rxjs";
                 </div>
             </div>
         </section>   
+        <wg-section-infos></wg-section-infos> 
         <section id="contact">
             <div class="container">
                 <div class="row">
