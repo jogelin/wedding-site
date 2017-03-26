@@ -8,8 +8,32 @@ import {Observable} from "rxjs";
 
             <div class="container">
                 <div class="row">
-                    <div class="col"> 
-                        {{rsvps$ | async}}
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Confirmed</th>
+                                <th>Date</th>
+                                <th>Message</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let rsvp of rsvps$ | async">
+                                <th scope="row">{{rsvp.$key}}</th>
+                                <td>{{rsvp.name}}</td>
+                                <td>{{rsvp.email}}</td>
+                                <td>
+                                    <i class="fa fa-ok" *ngIf="rsvp.confirmed"></i>
+                                    <i class="fa f" *ngIf="!rsvp.confirmed">Je ne viens pas...</i>
+                                </td>
+                                <td>{{rsvp.date | date:'medium'}}</td>
+                                <td>{{rsvp.message}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div> 

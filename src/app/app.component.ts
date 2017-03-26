@@ -9,7 +9,7 @@ import { environment } from '../environments/environment';
     `],
     template: `        
         <div *ngIf="!unConstruction" class="h-100" ngsRevealSet [ngsSelector]="'.row'"> 
-            <wg-sections-page></wg-sections-page>
+            <router-outlet></router-outlet>
         </div>        
         <div *ngIf="unConstruction"> 
             UNDER CONSTRUCTION

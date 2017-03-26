@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {environment} from '../../environments/environment';
+import {ScopeService} from "./scope.service";
+import {Observable} from "rxjs";
 
 
 @Component({
@@ -21,7 +22,7 @@ import {environment} from '../../environments/environment';
                 </div>
             </div>
         </section>
-        <section id="where">
+        <section id="where" class="section-padding">
             <div class="container">
                 <div class="row mb-4">
                     <div class="col-sm-12 col-md-10 offset-md-1">
@@ -34,46 +35,58 @@ import {environment} from '../../environments/environment';
                     </div>
                 </div>
             </div>
-        </section> 
-        <wg-section-part idi="civil" *ngIf="tadaaam">
-            <div class="row">
-                <div class="col-sm-4">
-                    Le mariage civil se déroulera sur la grand place de bruxelles. 
-                </div>
-                <div class="col-sm-4">
-                    Essayer au maximum de covoiturer car il faudra se garer aux alentours (plus de détails prochainement)
-                </div>
-                <div class="col-sm-4">
-                    <h3>Infos Pratiques</h3>
-                    Ensuite nous irons directement à la verrerie manger un bout en attendant la cérémonie
-                </div>
-            </div>
-        </wg-section-part>  
-        <wg-section-part idi="celeb" *ngIf="tadaam">
+        </section>
+        <wg-section-part idi="civil" *ngIf="tadaaam$ | async">
             <div class="row">
                 <div class="col-sm-12">
-                    <p>La cérémonie se déroulera dans le bois de la houssière à Braine-le-compte. </p>
-                    <p>Il y a un parking prévu mais essayer au maximum de covoiturer car le parking est petit. Vous pouvez vous regrouper au parking de la gare avant pour laisser les voitures en trop.</p>
-                    <p>Prenez des chaussures de marche ou des bottes si il pleut !</p>
-                    <p>Ensuite nous irons directement à la verrerie pour boire un verre, manger et passer une chouette fin de journée</p>
+                    <p>Notre mariage civil se déroulera à l'hotel de Ville de la grand place de Bruxelles.</p>
+                    <p>Nous nous réunirons tous à 9h45 sur la place et il sera possible de garer 3 voitures devant.
+                        (Nous vous tiendrons informés de l'organisation)</p>
+                    <p>Une fois mariés sous vos yeux et ceux de la loi, direction Braine-Le-Comte pour un petit
+                        pique-nique tous ensemble avant la célébration.</p>
                 </div>
             </div>
-        </wg-section-part>  
-        <wg-section-part idi="soiree" *ngIf="tadam">
+        </wg-section-part>
+        <wg-section-part idi="celeb" *ngIf="tadaam$ | async">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>A 14h00, la célébration de notre mariage se déroulera... en forêt, dans le bois de la Houssière à
+                        Braine-le-comte.<br>
+                        Les bons souliers et les pantalons retroussés seront donc de mise ! Pensez à prévoir une paire
+                        de rechange pour le reste de la journée au propre. <br>
+                        Un petit parking aux abords de la forêt sera à votre disposition. N'hésitez pas à vous
+                        rassembler au parking de la gare (idem salle) pour covoiturer vers le bois. </p>
+                    <p>Nous pourrons ensuite trinquer à notre union à La Verrerie de Braine-Le-Comte et partager une
+                        chouette journée tous ensemble.<br>
+
+                        Notre plus grand plaisir serait de construire
+                        cette journée ensoleillée avec vous! Nous aurons besoin de vous et de vos talents. En effet, le
+                        repas du soir sera basé sur le principe de
+                        l'auberge espagnole. Plus d'infos sur ....</p>
+                    <p>Pour votre tenue, faites vous plaisir, rien de tel qu'un savant mélange de couleurs et de
+                        décontraction !</p>
+                </div>
+            </div>
+        </wg-section-part>
+        <wg-section-part idi="soiree" *ngIf="tadam$ | async">
             <div class="row">
                 <div class="col-sm-4">
-                    La soirée se déroulera dans l'ancienne verrerie de braine de le compte
+                    Venez fêter cette belle soirée dans La Verrerie de Braine-Le-Comte dès 21h!<br>
+                    Il y en aura pour tous les goûts : danse, jeux, bar,... De quoi partager un chouette moment tous
+                    ensemble!
                 </div>
                 <div class="col-sm-4">
-                    Vous pouvez vous garer au parking de la gare
+                    Pour les plus vaillants, nous pourrons camper dans la coure de La Verrerie ou dormir dans la salle,
+                    petit-déjeuner à la clé!
                 </div>
-                <div class="col-sm-4"> 
-                    Il y en aura pour tous les goûts : danse, jeux, etc... 
+                <div class="col-sm-4">
+                    Le parking gratuit de la gare sera à votre diposition.
                 </div>
             </div>
-        </wg-section-part> 
-        <wg-section-rsvp></wg-section-rsvp> 
-        <section id="gift">
+        </wg-section-part>
+        <wg-section-infos></wg-section-infos>
+        <wg-section-rsvp></wg-section-rsvp>
+        <section id="gift" class="section-padding">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -81,37 +94,35 @@ import {environment} from '../../environments/environment';
                     </div>
                 </div>
             </div>
-        </section>   
-        <wg-section-infos></wg-section-infos> 
+        </section>
         <section id="contact">
             <div class="container">
                 <div class="row">
-                    <div class="col-4 offset-4">
+                    <div class="col-sm-2 offset-sm-2">
                         <img src="../../assets/footer_aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
+                    </div>
+                    <div class="col-sm-3">
                         <img src="../../assets/footer_address.svg" class="img-fluid" alt="Responsive image">
-                        <img src="../../assets/footer_email.svg" class="img-fluid" alt="Responsive image">
+                    </div>
+                    <div class="col-sm-3">
+                        <a href="mailto:jo-et-aline-tadaaam@gmail.com">jo-et-aline-tadaaam@gmail.com</a>
                     </div>
                 </div>
             </div>
-        </section> 
+        </section>
     `
 })
 export class SectionsPageComponent implements OnInit {
+    tadam$: Observable<boolean>;
+    tadaam$: Observable<boolean>;
+    tadaaam$: Observable<boolean>;
 
-    tadam: boolean = false;
-    tadaam: boolean = false;
-    tadaaam: boolean = false;
+    constructor(private _scopeService: ScopeService) {
+    }
 
     ngOnInit(): void {
-        const hostname = window.location.host.split('.')[0];
-        const localhost = hostname.indexOf('localhost') != -1;
-
-        if(environment.production) {
-            this.tadaaam = hostname.indexOf('tadaaam') != -1;
-            this.tadaam = this.tadaaam || hostname.indexOf('tadaam') != -1;
-            this.tadam = this.tadaam || hostname.indexOf('tadam') != -1;
-        } else {
-            this.tadam = this.tadaam = this.tadaaam = true;
-        }
+        this.tadam$ = this._scopeService.tadam$;
+        this.tadaam$ = this._scopeService.tadaam$;
+        this.tadaaam$ = this._scopeService.tadaaam$;
     }
 }

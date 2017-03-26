@@ -3,9 +3,9 @@ $bgWhere: #FFFFFF;
 $bgCivil: #78989B;
 $bgCeleb: #82AD99;
 $bgSoiree: #34434C;
-$bgRsvp: #FFFFFF;
-$bgGift: #FAFAFA;
-$bgContact: #1D213A;
+$bgRsvp: #DDC976;
+$bgGift: #FFF;
+$bgContact: #34434C;
 
 #fanion {
     background: $bgHome url(../../assets/fanion.svg) no-repeat center center;
@@ -21,7 +21,7 @@ $bgContact: #1D213A;
     min-height: 100%;
 }
 
-#where, :host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp, #gift {
+:host /deep/ .section-padding {
     padding: 5rem 0;
 }
 
@@ -48,6 +48,9 @@ $bgContact: #1D213A;
 
 :host /deep/ #rsvp {
     background-color: $bgRsvp;
+    small {
+        color:#FFFFFF;
+    }
 }
 
 #gift {
@@ -56,7 +59,11 @@ $bgContact: #1D213A;
 
 #contact {
     background-color: $bgContact;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+    a {
+        color: white;
+        font-size: 1.2rem;
+    }
 }
 
 :host /deep/ .btn-primary {
@@ -66,10 +73,11 @@ $bgContact: #1D213A;
 }
 
 :host /deep/ .alert-success {
-    background-color: $bgCivil;
-    border-color: $bgCivil;
+    background-color: $bgContact;
+    border-color: $bgContact;
     color: white;
 }
+
 :host /deep/ .badge-success {
     background-color: $bgHome;
     border-color: $bgHome;

@@ -1,10 +1,10 @@
-import { WeddingSitePage } from './app.po';
+import { Ng1Page } from './app.po';
 
-describe('wedding-site App', () => {
-  let page: WeddingSitePage;
+describe('ng1 App', () => {
+  let page: Ng1Page;
 
   beforeEach(() => {
-    page = new WeddingSitePage();
+    page = new Ng1Page();
   });
 
   it('should display message saying app works', () => {

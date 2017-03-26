@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class WeddingSitePage {
+export class Ng1Page {
   navigateTo() {
     return browser.get('/');
   }

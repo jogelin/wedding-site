@@ -33,7 +33,11 @@ export class RsvpService {
 
     addRsvp(rsvp: Rsvp): Observable<any> {
         return Observable.of(this.rsvpFirebase$.push(rsvp))
-            .do(() => this.currentRsvp$.next(rsvp));
+            .do((id) => {
+                rsvp.$key = id.key;
+                this.currentRsvp$.next(rsvp);
+                return id;
+            });
     }
 
     updateRsvp(rsvp: Rsvp): Observable<void> {

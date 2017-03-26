@@ -20,12 +20,11 @@ import {Observable} from "rxjs";
                 <input formControlName="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Entrez votre email"
                     [class.form-control-success]="form.controls.email?.valid && form.controls.email?.touched"
                     [class.form-control-danger]="!form.controls.email?.valid && form.controls.email?.touched">
-                <small id="emailHelp" class="form-text text-muted">Pour vous tenir au courant en cas de modifications</small>
             </div>
             <div class="form-group" 
                 [class.has-success]="form.controls.message?.valid && form.controls.message?.touched"
                 [class.has-danger]="!form.controls.message?.valid && form.controls.message?.touched">
-                <textarea rows="5" formControlName="message" class="form-control" id="name" aria-describedby="messageHelp" placeholder="Accompagné(e) de ...\n...et laissez nous un chouette petit message"
+                <textarea rows="5" formControlName="message" class="form-control" id="name" aria-describedby="messageHelp" placeholder="Accompagné(e) de ...\n...et n'hésitez pas à nous laissez un chouette petit message"
                     [class.form-control-success]="form.controls.message?.valid && form.controls.message?.touched"
                     [class.form-control-danger]="!form.controls.message?.valid && form.controls.message?.touched">
                 </textarea>
@@ -61,7 +60,7 @@ export class RsvpFormComponent implements OnInit, AfterViewInit {
             email: ['', [Validators.required, Validators.pattern(this._emailRegex)]],
             confirmed: [true, Validators.required],
             message: ['', Validators.required],
-            date: new Date()
+            date: [new Date(), Validators.required]
         });
     }
 

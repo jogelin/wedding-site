@@ -5,7 +5,7 @@ import {RsvpService, Rsvp} from "../rsvp/rsvp.service";
 @Component({
     selector: 'wg-section-rsvp',
     template: `
-        <section id="rsvp">
+        <section id="rsvp" class="section-padding">
             <div class="container">
                 <div class="row">
                     <img src="../../assets/rsvp_title.svg" class="col-sm-12 col-md-6 offset-md-3" alt="Responsive image">

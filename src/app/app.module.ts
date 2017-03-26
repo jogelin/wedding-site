@@ -4,6 +4,7 @@ import {AppComponent} from "./app.component";
 import {SectionModule} from "./section/section.module";
 import {NgsRevealModule} from "ng-scrollreveal";
 import {AngularFireModule} from "angularfire2";
+import {RoutesModule} from "./app.routing";
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAm4Az92FGvQwD3e2trw8b0dhL9z1nNTYw",
@@ -21,7 +22,8 @@ export const firebaseConfig = {
         BrowserModule,
         SectionModule,
         NgsRevealModule.forRoot(),
-        AngularFireModule.initializeApp(firebaseConfig)
+        AngularFireModule.initializeApp(firebaseConfig),
+        RoutesModule
 
     ],
     providers: [],
