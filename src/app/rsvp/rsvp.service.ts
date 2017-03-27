@@ -6,14 +6,7 @@ import {FirebaseListObservable, AngularFire} from "angularfire2";
 import {Observable, BehaviorSubject} from "rxjs";
 
 
-export class Rsvp {
-    $key: string;
-    name: string;
-    email: string;
-    confirmed: boolean;
-    message: string;
-    date: Date;
-}
+
 
 @Injectable()
 export class RsvpService {

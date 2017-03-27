@@ -3,7 +3,7 @@ import {RsvpService, Rsvp} from "./rsvp.service";
 import {Observable} from "rxjs";
 
 @Component({
-    selector: 'wg-rsvp-page',
+    selector: 'wg-rsvp-list',
     template: `
 
             <div class="container">

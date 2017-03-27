@@ -5,6 +5,10 @@ import {SectionModule} from "./section/section.module";
 import {NgsRevealModule} from "ng-scrollreveal";
 import {AngularFireModule} from "angularfire2";
 import {RoutesModule} from "./app.routing";
+import {AdminModule} from "./admin/admin.module";
+import { StoreModule } from '@ngrx/store';
+import {reducer} from "./app.reducers";
+
 
 export const firebaseConfig = {
     apiKey: "AIzaSyAm4Az92FGvQwD3e2trw8b0dhL9z1nNTYw",
@@ -20,11 +24,14 @@ export const firebaseConfig = {
     ],
     imports: [
         BrowserModule,
-        SectionModule,
+        RoutesModule,
+
         NgsRevealModule.forRoot(),
         AngularFireModule.initializeApp(firebaseConfig),
-        RoutesModule
+        StoreModule.provideStore(reducer),
 
+        SectionModule,
+        AdminModule
     ],
     providers: [],
     bootstrap: [AppComponent]
