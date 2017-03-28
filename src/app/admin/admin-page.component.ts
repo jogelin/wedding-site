@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {Rsvp, RsvpService} from "../rsvp/rsvp.service";
+import {RsvpService} from "../rsvp/domain/rsvp.service";
 
 @Component({
     selector: 'wg-admin-page',

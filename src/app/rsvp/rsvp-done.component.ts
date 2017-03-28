@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Rsvp, RsvpService} from "./rsvp.service";
+import {Rsvp, RsvpService} from "./domain/rsvp.service";
 
 @Component({
     selector: 'wg-rsvp-done',

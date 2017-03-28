@@ -6,7 +6,7 @@ import {FirebaseListObservable, AngularFire} from "angularfire2";
 import {Observable, BehaviorSubject} from "rxjs";
 
 
-export class Rsvp {
+export class Kadolog {
     $key: string;
     name: string;
     email: string;
@@ -16,56 +16,56 @@ export class Rsvp {
 }
 
 @Injectable()
-export class RsvpService {
+export class KadologService {
 
-    private _kadologFirebase$: FirebaseListObservable<Rsvp[]> = null;
-    private _currentRsvp$: BehaviorSubject<Rsvp> = null;
+    private _kadologFirebase$: FirebaseListObservable<Kadolog[]> = null;
+    private _currentKadolog$: BehaviorSubject<Kadolog> = null;
 
     constructor(private _af: AngularFire) {
         if (localStorage.getItem('kadolog')) {
-            this.currentRsvp$.next(JSON.parse(localStorage.getItem('kadolog')) as Rsvp);
+            this.currentKadolog$.next(JSON.parse(localStorage.getItem('kadolog')) as Kadolog);
         }
     }
 
-    loadRsvps(): Observable<Rsvp[]> {
+    loadKadologs(): Observable<Kadolog[]> {
         return Observable.from(this.kadologFirebase$);
     }
 
-    addRsvp(kadolog: Rsvp): Observable<any> {
+    addKadolog(kadolog: Kadolog): Observable<any> {
         return Observable.of(this.kadologFirebase$.push(kadolog))
             .do((id) => {
                 kadolog.$key = id.key;
-                this.currentRsvp$.next(kadolog);
+                this.currentKadolog$.next(kadolog);
                 return id;
             });
     }
 
-    updateRsvp(kadolog: Rsvp): Observable<void> {
-        const newRsvp:Rsvp = Object.assign({},kadolog);
-        delete newRsvp.$key;
-        return Observable.from(this.kadologFirebase$.update(`${kadolog.$key}`, newRsvp));
+    updateKadolog(kadolog: Kadolog): Observable<void> {
+        const newKadolog:Kadolog = Object.assign({},kadolog);
+        delete newKadolog.$key;
+        return Observable.from(this.kadologFirebase$.update(`${kadolog.$key}`, newKadolog));
     }
 
-    resetRsvp(): void {
+    resetKadolog(): void {
         localStorage.removeItem('kadolog');
-        this.currentRsvp$.next(null);
+        this.currentKadolog$.next(null);
     }
 
-    get kadologFirebase$(): FirebaseListObservable<Rsvp[]> {
+    get kadologFirebase$(): FirebaseListObservable<Kadolog[]> {
         if (this._kadologFirebase$ === null) {
             this._kadologFirebase$ = this._af.database.list('/kadolog');
         }
         return this._kadologFirebase$;
     }
 
-    get currentRsvp$(): BehaviorSubject<Rsvp> {
-        if (this._currentRsvp$ === null) {
-            this._currentRsvp$ = new BehaviorSubject<Rsvp>(JSON.parse(localStorage.getItem('kadolog')) as Rsvp)
+    get currentKadolog$(): BehaviorSubject<Kadolog> {
+        if (this._currentKadolog$ === null) {
+            this._currentKadolog$ = new BehaviorSubject<Kadolog>(JSON.parse(localStorage.getItem('kadolog')) as Kadolog)
                 .do(kadolog => {
                     if(kadolog !== null)
                         localStorage.setItem('kadolog', JSON.stringify(kadolog))
-                }) as BehaviorSubject<Rsvp>;
+                }) as BehaviorSubject<Kadolog>;
         }
-        return this._currentRsvp$;
+        return this._currentKadolog$;
     }
 }

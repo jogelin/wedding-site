@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {RsvpService, Rsvp} from "./kadolog.service";
+import {KadologService, Kadolog} from "./kadolog.service";
 import {Observable} from "rxjs";
 
 @Component({
@@ -39,14 +39,14 @@ import {Observable} from "rxjs";
             </div> 
     `
 })
-export class RsvpListPageComponent implements OnInit {
+export class KadologListPageComponent implements OnInit {
 
-    kadologs$: Observable<Rsvp[]>;
+    kadologs$: Observable<Kadolog[]>;
 
-    constructor(private _kadologService: RsvpService) {
+    constructor(private _kadologService: KadologService) {
     }
 
     ngOnInit(): void {
-        this.kadologs$ = Observable.from(this._kadologService.loadRsvps());
+        this.kadologs$ = Observable.from(this._kadologService.loadKadologs());
     }
 }

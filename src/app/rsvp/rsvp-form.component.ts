@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {RsvpService} from "./rsvp.service";
+import {RsvpService} from "./domain/rsvp.service";
 import {Observable} from "rxjs";
 
 @Component({

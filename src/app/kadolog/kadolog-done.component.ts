@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {Rsvp, RsvpService} from "./kadolog.service";
+import {Kadolog, KadologService} from "./kadolog.service";
 
 @Component({
     selector: 'wg-kadolog-done',
@@ -21,20 +21,20 @@ import {Rsvp, RsvpService} from "./kadolog.service";
                 Nous vous tiendrons au courant si il y a des modifications!
             </p>
             <p class="mb-0">
-                <button class="btn btn-primary btn-sm" (click)="resetRsvp()">Cliquez ici pour recommencer votre RSVP</button>
+                <button class="btn btn-primary btn-sm" (click)="resetKadolog()">Cliquez ici pour recommencer votre RSVP</button>
             </p>    
         </div>
     `
 })
-export class RsvpDoneComponent {
+export class KadologDoneComponent {
 
-    @Input() kadolog: Rsvp;
+    @Input() kadolog: Kadolog;
 
-    constructor(private _kadologService: RsvpService) {
+    constructor(private _kadologService: KadologService) {
 
     }
 
-    resetRsvp() {
-        this._kadologService.resetRsvp();
+    resetKadolog() {
+        this._kadologService.resetKadolog();
     }
 }

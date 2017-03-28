@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {RsvpService, Rsvp} from "./rsvp.service";
+import {RsvpService, Rsvp} from "./domain/rsvp.service";
 import {Observable} from "rxjs";
 
 @Component({

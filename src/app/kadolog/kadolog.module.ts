@@ -1,27 +1,27 @@
 import {NgModule} from "@angular/core";
 import {CommonModule} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
-import {RsvpService} from "./kadolog.service";
-import {RsvpFormComponent} from "./kadolog-form.component";
-import {RsvpListPageComponent} from "./kadolog-list-page.component";
-import {RsvpDoneComponent} from "./kadolog-done.component";
+import {KadologService} from "./kadolog.service";
+import {KadologFormComponent} from "./kadolog-form.component";
+import {KadologListPageComponent} from "./kadolog-list-page.component";
+import {KadologDoneComponent} from "./kadolog-done.component";
 
 
 @NgModule({
     declarations: [
-        RsvpFormComponent,
-        RsvpDoneComponent,
-        RsvpListPageComponent,
+        KadologFormComponent,
+        KadologDoneComponent,
+        KadologListPageComponent,
     ],
     imports: [
         CommonModule,
         ReactiveFormsModule
     ],
-    providers: [RsvpService],
+    providers: [KadologService],
     exports: [
-        RsvpFormComponent,
-        RsvpDoneComponent
+        KadologFormComponent,
+        KadologDoneComponent
     ]
 })
-export class RsvpModule {
+export class KadologModule {
 }

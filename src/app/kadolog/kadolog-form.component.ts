@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild, AfterViewInit} from "@angular/core";
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
-import {RsvpService} from "./kadolog.service";
+import {KadologService} from "./kadolog.service";
 import {Observable} from "rxjs";
 
 @Component({
@@ -42,7 +42,7 @@ import {Observable} from "rxjs";
         </form>
     `
 })
-export class RsvpFormComponent implements OnInit, AfterViewInit {
+export class KadologFormComponent implements OnInit, AfterViewInit {
 
     @ViewChild('confirmed') confirmed;
     @ViewChild('cancelled') cancelled;
@@ -51,7 +51,7 @@ export class RsvpFormComponent implements OnInit, AfterViewInit {
 
     private _emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'i');
 
-    constructor(private _fb: FormBuilder, private _kadologService: RsvpService) {
+    constructor(private _fb: FormBuilder, private _kadologService: KadologService) {
     }
 
     ngOnInit(): void {
@@ -71,7 +71,7 @@ export class RsvpFormComponent implements OnInit, AfterViewInit {
             .do((val) => this.form.get('confirmed').setValue(val))
             .do((val) => this.form.get('date').setValue(new Date()))
             .map((val) => this.form.value)
-            .switchMap((kadolog) => this._kadologService.addRsvp(kadolog))
+            .switchMap((kadolog) => this._kadologService.addKadolog(kadolog))
             .subscribe((id) => {
 
             });

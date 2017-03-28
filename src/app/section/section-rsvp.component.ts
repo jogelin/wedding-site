@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
-import {RsvpService, Rsvp} from "../rsvp/rsvp.service";
+import {RsvpService, Rsvp} from "../rsvp/domain/rsvp.service";
 
 @Component({
     selector: 'wg-section-rsvp',
