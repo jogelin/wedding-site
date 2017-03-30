@@ -15,13 +15,28 @@ export const initialState: State = {
 export function reducer(state = initialState, action: Actions): State {
 
     switch (action.type) {
+
         case ActionTypes.LOAD_SUCCESS: {
+            return Object.assign({}, state, {
+                currentRsvp: action.payload
+            });
+        }
+
+        case ActionTypes.LOAD_LIST_SUCCESS: {
             return Object.assign({}, state, {
                 rsvps: action.payload
             });
         }
 
-        case ActionTypes.LOAD_FAIL: {
+        case ActionTypes.SAVE_SUCCESS: {
+            return Object.assign({}, state, {
+                currentRsvp: action.payload
+            });
+        }
+
+        case ActionTypes.LOAD_FAIL:
+        case ActionTypes.LOAD_LIST_FAIL:
+        case ActionTypes.SAVE_FAIL: {
             console.error(action.type);
             return state;
         }

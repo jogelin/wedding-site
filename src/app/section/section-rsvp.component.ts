@@ -1,6 +1,8 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {RsvpService, Rsvp} from "../rsvp/domain/rsvp.service";
+import * as fromRoot from "../app.reducer";
+import {Store} from "@ngrx/store";
+import {Rsvp} from "../rsvp/domain/rsvp.model";
 
 @Component({
     selector: 'wg-section-rsvp',
@@ -12,12 +14,12 @@ import {RsvpService, Rsvp} from "../rsvp/domain/rsvp.service";
                 </div>
                 <hr>
                 <div class="row">
-                    <div class="col"> 
-                        <wg-rsvp-form *ngIf="!(hasRsvp$ | async)"></wg-rsvp-form>
+                    <div class="col">
+                        <wg-rsvp-form *ngIf="!(hasRsvp$ | async)" [rsvp]="rsvp$ | async" (editRsvp)="handleEditRsvp"></wg-rsvp-form>
                         <wg-rsvp-done *ngIf="hasRsvp$ | async" [rsvp]="rsvp$ | async"></wg-rsvp-done>
                     </div>
                 </div>
-            </div> 
+            </div>
         </section>
     `
 })
@@ -25,13 +27,16 @@ export class SectionRsvpComponent implements OnInit {
     rsvp$: Observable<Rsvp>;
     hasRsvp$: Observable<boolean>;
 
-    constructor(private _rsvpService: RsvpService) {
+    constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvp$ = Observable.from(this._rsvpService.currentRsvp$)
-        this.hasRsvp$ = Observable.from(this._rsvpService.currentRsvp$)
-            .map(rsvp => rsvp !== null);
+        this.rsvp$ = this._store.select(fromRoot.getCurrentRsvp);
+        //this.hasRsvp$ = this._store.select(fromRoot.hasRsvp);
 
+    }
+
+    handleEditRsvp() {
+        //  this._store.dispatch(new SaveAction())
     }
 }

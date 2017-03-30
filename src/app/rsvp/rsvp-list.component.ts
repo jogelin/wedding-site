@@ -1,11 +1,12 @@
 import {Component, OnInit} from "@angular/core";
-import {RsvpService, Rsvp} from "./domain/rsvp.service";
+import * as fromRoot from "../app.reducer";
 import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import {Rsvp} from "./domain/rsvp.model";
 
 @Component({
     selector: 'wg-rsvp-list',
-    template: `
-
+    template: `        
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -39,14 +40,14 @@ import {Observable} from "rxjs";
             </div> 
     `
 })
-export class RsvpListPageComponent implements OnInit {
+export class RsvpListComponent implements OnInit {
 
     rsvps$: Observable<Rsvp[]>;
 
-    constructor(private _rsvpService: RsvpService) {
+    constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvps$ = Observable.from(this._rsvpService.loadRsvps());
+        this.rsvps$ = this._store.select(fromRoot.getRsvps);
     }
 }

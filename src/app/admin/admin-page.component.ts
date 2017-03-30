@@ -1,6 +1,9 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {RsvpService} from "../rsvp/domain/rsvp.service";
+import {Rsvp} from "../rsvp/domain/rsvp.model";
+import * as fromRoot from "../app.reducer";
+import {Store} from "@ngrx/store";
+
 
 @Component({
     selector: 'wg-admin-page',
@@ -23,10 +26,10 @@ export class AdminPageComponent implements OnInit {
 
     rsvps$: Observable<Rsvp[]>;
 
-    constructor(private _rsvpService: RsvpService) {
+    constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvps$ = Observable.from(this._rsvpService.loadRsvps());
+        this.rsvps$ = this._store.select(fromRoot.getRsvps);
     }
 }

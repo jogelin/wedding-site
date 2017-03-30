@@ -1,50 +1,41 @@
-import { ActionReducer } from '@ngrx/store';
-import { State, getReducers, tableCreated$ } from 'ngrx-domains';
-import { environment } from '../../environments/environment';
+import {ActionReducer, combineReducers} from "@ngrx/store";
+import {environment} from "../environments/environment";
+import {compose} from "@ngrx/core/compose";
+import {storeFreeze} from "ngrx-store-freeze";
+import * as fromRsvp from "./rsvp/domain/rsvp.reducer";
+import * as fromKadolog from "./kadolog/domain/kadolog.reducer";
+import {createSelector} from "reselect";
 
-/**
- * The compose function is one of our most handy tools. In basic terms, you give
- * it any number of functions and it returns a function. This new function
- * takes a value and chains it through every composed function, returning
- * the output.
- *
- * More: https://drboolean.gitbooks.io/mostly-adequate-guide/content/ch5.html
- */
-import { compose } from '@ngrx/core/compose';
+export interface State {
+    rsvp: fromRsvp.State;
+    filter: fromKadolog.State;
+}
 
-/**
- * storeFreeze prevents state from being mutated. When mutation occurs, an
- * exception will be thrown. This is useful during development mode to
- * ensure that none of the reducers accidentally mutates the state.
- */
-import { storeFreeze } from 'ngrx-store-freeze';
+const reducers = {
+    guest: fromRsvp.reducer,
+    filter: fromKadolog.reducer
+};
 
-/**
- * combineReducers is another useful metareducer that takes a map of reducer
- * functions and creates a new reducer that stores the gathers the values
- * of each reducer and stores them using the reducer's key. Think of it
- * almost like a database, where every reducer is a table in the db.
- *
- * More: https://egghead.io/lessons/javascript-redux-implementing-combinereducers-from-scratch
- */
-import { combineReducers } from '@ngrx/store';
-
-
-let _reducer: ActionReducer<State>;
-
-// Support lazy loading, re-build reducer tree when a new domain is added
-tableCreated$.subscribe( (domain: string) => {
-    console.log('Reducer updated - new domain: ' + domain);
-
-    if (environment.production) {
-        _reducer = combineReducers(getReducers());
-    }
-    else {
-        _reducer = compose(storeFreeze, combineReducers)(getReducers());
-    }
-});
-
+const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
+const productionReducer: ActionReducer<State> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
-    return _reducer(state, action);
+    if (environment.production) {
+        return productionReducer(state, action);
+    } else {
+        return developmentReducer(state, action);
+    }
 }
+
+//RSVP
+export const getRsvpState = (state: State) => state.rsvp;
+
+export const getRsvps = createSelector(getRsvpState, fromRsvp.getRsvps);
+export const getCurrentRsvp = createSelector(getRsvpState, fromRsvp.getCurrentRsvp);
+export const hasRsvp = createSelector(fromRsvp.getCurrentRsvp, (rsvp) => rsvp != null);
+
+//KADOLOG
+// export const getKadologState = (state: State) => state.rsvp;
+//
+// export const getKadologs = createSelector(getKadologState, fromKadolog.getKadologs);
+// export const getCurrentKadolog = createSelector(getKadologState, fromKadolog.getCurrentRsvp);

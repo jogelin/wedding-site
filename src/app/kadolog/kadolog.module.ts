@@ -1,21 +1,19 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
 import {KadologService} from "./kadolog.service";
 import {KadologFormComponent} from "./kadolog-form.component";
-import {KadologListPageComponent} from "./kadolog-list-page.component";
 import {KadologDoneComponent} from "./kadolog-done.component";
+import {SharedModule} from "../shared/shared.module";
+import {KadologListComponent} from "./kadolog-list.component";
 
 
 @NgModule({
     declarations: [
         KadologFormComponent,
         KadologDoneComponent,
-        KadologListPageComponent,
+        KadologListComponent,
     ],
     imports: [
-        CommonModule,
-        ReactiveFormsModule
+        SharedModule
     ],
     providers: [KadologService],
     exports: [

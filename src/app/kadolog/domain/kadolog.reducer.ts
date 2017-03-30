@@ -1,53 +1,27 @@
-import {ReportActions, ReportActionTypes} from "./report.actions";
-import {Report, ReportCountRefresh} from "./report.model";
+import {Actions, ActionTypes} from "./kadolog.actions";
+import {Kadolog} from "./kadolog.model";
+
 
 export interface State {
-    report: Report;
+    kadologs: Kadolog[];
+    currentKadolog: Kadolog;
 }
 
 export const initialState: State = {
-    report: null
+    kadologs: [],
+    currentKadolog: null
 };
 
-export function reducer(state = initialState, action: ReportActions): State {
+export function reducer(state = initialState, action: Actions): State {
 
     switch (action.type) {
-
-        case ReportActionTypes.LOAD_SUCCESS: {
-            return {
-                report: action.payload
-            };
+        case ActionTypes.LOAD_SUCCESS: {
+            return Object.assign({}, state, {
+                kadologs: action.payload
+            });
         }
 
-        case ReportActionTypes.LOAD_FAIL: {
-            console.error(action.type);
-            return state;
-        }
-
-        case ReportActionTypes.REFRESH_COUNT_SUCCESS: {
-            const newReport = JSON.parse(JSON.stringify(state.report));
-            const refreshCounts: ReportCountRefresh[] = action.payload;
-            newReport.rows.forEach(row =>
-                row.cols.forEach(col =>
-                    col.counts.forEach(count => {
-                        console.log(refreshCounts);
-                        count.count = refreshCounts
-                            .filter(refreshCount =>
-                                refreshCount.path[0] === row.name &&
-                                refreshCount.path[1] === col.name &&
-                                refreshCount.path[2] === count.name
-                            )
-                            .map(refreshCount => refreshCount.count);
-                    })
-                )
-            );
-
-            return {
-                report: newReport
-            };
-        }
-
-        case ReportActionTypes.REFRESH_COUNT_FAIL: {
+        case ActionTypes.LOAD_FAIL: {
             console.error(action.type);
             return state;
         }
@@ -58,6 +32,5 @@ export function reducer(state = initialState, action: ReportActions): State {
     }
 }
 
-export const getReport = (state: State) => state.report;
-export const getReportHeaders = (state: State) => state.report.headers;
-export const getReportRows = (state: State) => state.report.rows;
+export const getKadologs = (state: State) => state.kadologs;
+export const getCurrentKadolog = (state: State) => state.currentKadolog;

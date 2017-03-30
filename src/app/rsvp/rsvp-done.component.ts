@@ -1,5 +1,6 @@
-import {Component, Input} from "@angular/core";
-import {Rsvp, RsvpService} from "./domain/rsvp.service";
+import {Component, EventEmitter, Input, Output} from "@angular/core";
+import {RsvpService} from "./domain/rsvp.service";
+import {Rsvp} from "./domain/rsvp.model";
 
 @Component({
     selector: 'wg-rsvp-done',
@@ -21,7 +22,7 @@ import {Rsvp, RsvpService} from "./domain/rsvp.service";
                 Nous vous tiendrons au courant si il y a des modifications!
             </p>
             <p class="mb-0">
-                <button class="btn btn-primary btn-sm" (click)="resetRsvp()">Cliquez ici pour recommencer votre RSVP</button>
+                <button class="btn btn-primary btn-sm" (click)="editRsvp">Cliquez ici pour modifier votre RSVP</button>
             </p>    
         </div>
     `
@@ -29,12 +30,9 @@ import {Rsvp, RsvpService} from "./domain/rsvp.service";
 export class RsvpDoneComponent {
 
     @Input() rsvp: Rsvp;
+    @Output() editRsvp = new EventEmitter();
 
-    constructor(private _rsvpService: RsvpService) {
+    constructor() {
 
-    }
-
-    resetRsvp() {
-        this._rsvpService.resetRsvp();
     }
 }

@@ -7,7 +7,7 @@ import {AngularFireModule} from "angularfire2";
 import {RoutesModule} from "./app.routing";
 import {AdminModule} from "./admin/admin.module";
 import { StoreModule } from '@ngrx/store';
-import {reducer} from "./app.reducers";
+import {reducer} from "./app.reducer";
 
 
 export const firebaseConfig = {

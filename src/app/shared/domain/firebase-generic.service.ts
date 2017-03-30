@@ -2,22 +2,30 @@
  * Created by Joni on 28/12/2016.
  */
 import {Inject, Injectable} from "@angular/core";
-import {AngularFire, FirebaseListObservable} from "angularfire2";
+import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
 import {Observable} from "rxjs";
-import {FirebaseEntity} from "./entity.model";
+import {Entity, FirebaseEntity} from "./entity.model";
 import {GenericService} from "./generic.service";
 
 @Injectable()
 export class FirebaseGenericService<T extends FirebaseEntity> implements GenericService<T> {
 
-    private firebase$: FirebaseListObservable<T[]> = null;
+    private firebaseList$: FirebaseListObservable<T[]> = null;
+    private firebaseObject$: FirebaseObjectObservable<T> = null;
+    private api: string = null;
 
     constructor(api: string, @Inject(AngularFire) private _af: AngularFire = null) {
-        this.firebase$ = this._af.database.list(api);
+        this.api = api
     }
 
-    load(): Observable<T[]> {
-        return Observable.from(this.firebase$);
+    load($key:string): Observable<T> {
+        this.firebaseObject$ = this._af.database.object(this.api+'/'+$key);
+        return Observable.from(this.firebaseObject$);
+    }
+
+    loadAll(): Observable<T[]> {
+        this.firebaseList$ = this._af.database.list(this.api);
+        return Observable.from(this._af.database.list(this.api));
     }
 
     save(entity: T): Observable<any> {
@@ -25,10 +33,10 @@ export class FirebaseGenericService<T extends FirebaseEntity> implements Generic
     }
 
     create(entity: T): Observable<firebase.database.ThenableReference> {
-        return Observable.from(this.firebase$.push(entity));
+        return Observable.from(this.firebaseList$.push(entity));
     }
 
     update({$key: $key, ...entity}): Observable<void> {
-        return Observable.from(this.firebase$.update(`${$key}`, entity));
+        return Observable.from(this.firebaseList$.update(`${$key}`, entity));
     }
 }

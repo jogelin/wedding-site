@@ -1,21 +1,22 @@
 import {NgModule} from "@angular/core";
-import {CommonModule} from "@angular/common";
-import {ReactiveFormsModule} from "@angular/forms";
+
 import {RsvpService} from "./domain/rsvp.service";
 import {RsvpFormComponent} from "./rsvp-form.component";
-import {RsvpListPageComponent} from "./rsvp-list-page.component";
 import {RsvpDoneComponent} from "./rsvp-done.component";
+import {RsvpListComponent} from "./rsvp-list.component";
+import {EffectsModule} from "@ngrx/effects";
+import {RsvpEffects} from "./domain/rsvp.effects";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
     declarations: [
         RsvpFormComponent,
-        RsvpDoneComponent,
-        RsvpListPageComponent,
+        RsvpDoneComponent
     ],
     imports: [
-        CommonModule,
-        ReactiveFormsModule
+        SharedModule,
+        EffectsModule.run(RsvpEffects)
     ],
     providers: [RsvpService],
     exports: [

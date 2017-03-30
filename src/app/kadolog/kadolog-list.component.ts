@@ -39,7 +39,7 @@ import {Observable} from "rxjs";
             </div> 
     `
 })
-export class KadologListPageComponent implements OnInit {
+export class KadologListComponent implements OnInit {
 
     kadologs$: Observable<Kadolog[]>;
 

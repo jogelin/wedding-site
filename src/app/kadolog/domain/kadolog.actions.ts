@@ -1,15 +1,15 @@
 import {Action} from "@ngrx/store";
 import {type} from "../../shared/util";
+import {Kadolog} from "./kadolog.model";
 
-const ActionTypes = {
-    LOAD: type('[Report] Load'),
-    LOAD_SUCCESS: type('[Report] Load success'),
-    LOAD_FAIL: type('[Report] Load Fail'),
-    REFRESH_COUNT: type('[Report] Refresh count'),
-    REFRESH_COUNT_SUCCESS: type('[Report] Refresh count success'),
-    REFRESH_COUNT_FAIL: type('[Report] Refresh count Fail')
+export const ActionTypes = {
+    LOAD: type('[Kadolog] Load'),
+    LOAD_SUCCESS: type('[Kadolog] Load success'),
+    LOAD_FAIL: type('[Kadolog] Load Fail'),
+    SAVE: type('[Kadolog] Load success'),
+    SAVE_SUCCESS: type('[Kadolog] Load success'),
+    SAVE_FAIL: type('[Kadolog] Load Fail')
 };
-export {ActionTypes as ReportActionTypes};
 
 export class LoadAction implements Action {
     type = ActionTypes.LOAD;
@@ -22,7 +22,7 @@ export class LoadAction implements Action {
 export class LoadSuccessAction implements Action {
     type = ActionTypes.LOAD_SUCCESS;
 
-    constructor(public payload: Report) {
+    constructor(public payload: Kadolog) {
     }
 }
 
@@ -33,32 +33,31 @@ export class LoadFailAction implements Action {
     }
 }
 
-export class RefreshCountAction implements Action {
-    type = ActionTypes.REFRESH_COUNT;
+export class SaveAction implements Action {
+    type = ActionTypes.SAVE;
     payload;
 
     constructor() {
     }
 }
 
-export class RefreshCountSuccessAction implements Action {
-    type = ActionTypes.REFRESH_COUNT_SUCCESS;
+export class SaveSuccessAction implements Action {
+    type = ActionTypes.SAVE_SUCCESS;
 
-    constructor(public payload: ReportCountRefresh[]) {
+    constructor(public payload: Kadolog) {
     }
 }
 
-export class RefreshCountFailAction implements Action {
-    type = ActionTypes.REFRESH_COUNT_FAIL;
+export class SaveFailAction implements Action {
+    type = ActionTypes.SAVE_FAIL;
 
     constructor(public payload: any) {
     }
 }
-
-export type ReportActions
+export type Actions
     = LoadAction
     | LoadSuccessAction
     | LoadFailAction
-    | RefreshCountAction
-    | RefreshCountSuccessAction
-    | RefreshCountFailAction;
+    | SaveAction
+    | SaveSuccessAction
+    | SaveFailAction;
