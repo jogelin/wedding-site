@@ -22,7 +22,7 @@ import {Guest} from "../guest/guest.model";
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let rsvp of rsvps$ | async">
+                        <tr *ngFor="let rsvp of guest$ | async">
                             <th scope="row">{{rsvp.$key}}</th>
                             <td>{{rsvp.name}}</td>
                             <td>{{rsvp.email}}</td>
@@ -42,12 +42,12 @@ import {Guest} from "../guest/guest.model";
 })
 export class RsvpListComponent implements OnInit {
 
-    rsvps$: Observable<Guest[]>;
+    guest$: Observable<Guest[]>;
 
     constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvps$ = this._store.select(fromRoot.getGuests);
+        this.guest$ = this._store.select(fromRoot.getGuests);
     }
 }

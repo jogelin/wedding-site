@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
-import {Observable} from "rxjs";
-import {ScopeService} from "./scope.service";
+import {Store} from "@ngrx/store";
+import * as fromRoot from "../app.reducer";
+
 
 // just an interface for type safety.
 export interface Marker {
@@ -59,11 +60,11 @@ export interface Map {
 export class SectionInfosComponent implements OnInit {
     maps: Map[] = [];
 
-    constructor(private _scopeService: ScopeService) {
+    constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this._scopeService.tadaaam$
+        this._store.select(fromRoot.isTadaaam)
             .filter(val => val)
             .subscribe(val =>
                 this.maps.push({
@@ -81,7 +82,7 @@ export class SectionInfosComponent implements OnInit {
                     ]
                 })
             );
-        this._scopeService.tadaam$
+        this._store.select(fromRoot.isTadaam)
             .filter(val => val)
             .subscribe(val =>
                 this.maps.push({
@@ -99,7 +100,7 @@ export class SectionInfosComponent implements OnInit {
                     ]
                 })
             );
-        this._scopeService.tadam$
+        this._store.select(fromRoot.isTadam)
             .filter(val => val)
             .subscribe(val =>
                 this.maps.push({

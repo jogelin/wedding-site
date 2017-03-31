@@ -4,5 +4,5 @@ export class Guest extends FirebaseEntity {
     email: string;
     confirmed: boolean;
     message: string;
-    scope:
+    scope: string;
 }

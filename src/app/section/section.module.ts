@@ -7,7 +7,7 @@ import {CommonModule} from "@angular/common";
 import {RsvpModule} from "../rsvp/rsvp.module";
 import {SectionInfosComponent} from "./section-infos.component";
 import { AgmCoreModule } from 'angular2-google-maps/core';
-import {ScopeService} from "./scope.service";
+import {ScopeService} from "../scope/scope.service";
 
 
 @NgModule({

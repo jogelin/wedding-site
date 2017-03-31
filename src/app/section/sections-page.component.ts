@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ScopeService} from "./scope.service";
+import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
+import {Store} from "@ngrx/store";
+import * as fromRoot from "../app.reducer";
+import {UpdateAction} from "../scope/scope.actions";
 
 
 @Component({
@@ -113,16 +115,18 @@ import {Observable} from "rxjs";
     `
 })
 export class SectionsPageComponent implements OnInit {
-    tadam$: Observable<boolean>;
-    tadaam$: Observable<boolean>;
     tadaaam$: Observable<boolean>;
+    tadaam$: Observable<boolean>;
+    tadam$: Observable<boolean>;
 
-    constructor(private _scopeService: ScopeService) {
+    constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.tadam$ = this._scopeService.tadam$;
-        this.tadaam$ = this._scopeService.tadaam$;
-        this.tadaaam$ = this._scopeService.tadaaam$;
+        this.tadaaam$ = this._store.select(fromRoot.isTadaaam);
+        this.tadaam$ = this._store.select(fromRoot.isTadaam);
+        this.tadam$ = this._store.select(fromRoot.isTadam);
+
+        this._store.dispatch(new UpdateAction());
     }
 }

@@ -16,8 +16,8 @@ import {EditAction, LoadAction, LoadListAction, SaveAction} from "../guest/guest
                 <hr>
                 <div class="row">
                     <div class="col">
-                        <wg-rsvp-form *ngIf="editing$ | async" [guest]="rsvp$ | async" (saveGuest)="handleSaveRsvp($event)"></wg-rsvp-form>
-                        <wg-rsvp-done *ngIf="!(editing$ | async)" [rsvp]="rsvp$ | async" (editRsvp)="handleEditRsvp($event)"></wg-rsvp-done>
+                        <wg-rsvp-form *ngIf="editing$ | async" [guest]="guest$ | async" (saveGuest)="handleSaveGuest($event)"></wg-rsvp-form>
+                        <wg-rsvp-done *ngIf="!(editing$ | async)" [guest]="guest$ | async" (editRsvp)="handleEditGuest($event)"></wg-rsvp-done>
                     </div>
                 </div>
             </div>
@@ -25,25 +25,25 @@ import {EditAction, LoadAction, LoadListAction, SaveAction} from "../guest/guest
     `
 })
 export class SectionRsvpComponent implements OnInit {
-    rsvp$: Observable<Guest>;
+    guest$: Observable<Guest>;
     editing$: Observable<boolean>;
 
     constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvp$ = this._store.select(fromRoot.getCurrentGuests);
+        this.guest$ = this._store.select(fromRoot.getCurrentGuest);
         this.editing$ = this._store.select(fromRoot.isEditing);
 
         this._store.dispatch(new LoadAction());
         this._store.dispatch(new LoadListAction());
     }
 
-    handleEditRsvp() {
+    handleEditGuest() {
         this._store.dispatch(new EditAction());
     }
 
-    handleSaveRsvp(rsvp: Guest) {
+    handleSaveGuest(rsvp: Guest) {
         this._store.dispatch(new SaveAction(rsvp));
     }
 }

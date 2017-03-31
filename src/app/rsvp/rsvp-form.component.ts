@@ -10,7 +10,6 @@ import {
     ViewChild
 } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {GuestService} from "../guest/guest.service";
 import {Observable} from "rxjs";
 import {Guest} from "../guest/guest.model";
 
@@ -68,7 +67,7 @@ export class RsvpFormComponent implements OnInit, OnChanges, AfterViewInit {
 
     private _emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'i');
 
-    constructor(private _fb: FormBuilder, private _rsvpService: GuestService) {
+    constructor(private _fb: FormBuilder) {
         this.form = this._fb.group({
             $key: [null],
             name: ['', Validators.required],
@@ -95,8 +94,8 @@ export class RsvpFormComponent implements OnInit, OnChanges, AfterViewInit {
             Observable.fromEvent(this.cancelled.nativeElement, 'click').mapTo(false))
             .do((val) => this.form.get('confirmed').setValue(val))
             .map((val) => this.form.value)
-            .subscribe((rsvp) => {
-                this.saveGuest.emit(rsvp)
+            .subscribe((guest) => {
+                this.saveGuest.emit(guest)
             });
     }
 }
