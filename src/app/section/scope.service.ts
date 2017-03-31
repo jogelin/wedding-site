@@ -15,10 +15,10 @@ export class ScopeService {
             this._tadaaam$.next(hostname.indexOf('tadaaam') != -1);
             this._tadaaam$
                 .switchMap(val => Observable.of(val || hostname.indexOf('tadaam') != -1))
-                .subscribe(val => this._tadaam$.next(val))
+                .subscribe(val => this._tadaam$.next(val));
             this._tadaam$
                 .switchMap(val => Observable.of(val || hostname.indexOf('tadam') != -1))
-                .subscribe(val => this._tadam$.next(val))
+                .subscribe(val => this._tadam$.next(val));
         } else {
             this._tadaaam$.next(true);
             this._tadaam$.next(true);

@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
-import {Rsvp} from "../rsvp/domain/rsvp.model";
+import {Guest} from "../guest/guest.model";
 import * as fromRoot from "../app.reducer";
 import {Store} from "@ngrx/store";
 
@@ -16,7 +16,6 @@ import {Store} from "@ngrx/store";
                 </div>
                 <div class="row">
                     <div class="col">
-                        <wg-kadolog-list></wg-kadolog-list>
                     </div>
                 </div>
             </div> 
@@ -24,12 +23,12 @@ import {Store} from "@ngrx/store";
 })
 export class AdminPageComponent implements OnInit {
 
-    rsvps$: Observable<Rsvp[]>;
+    guest$: Observable<Guest[]>;
 
     constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.rsvps$ = this._store.select(fromRoot.getRsvps);
+        this.guest$ = this._store.select(fromRoot.getGuests);
     }
 }

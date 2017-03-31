@@ -8,6 +8,7 @@ import {RoutesModule} from "./app.routing";
 import {AdminModule} from "./admin/admin.module";
 import { StoreModule } from '@ngrx/store';
 import {reducer} from "./app.reducer";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 
 
 export const firebaseConfig = {
@@ -29,6 +30,8 @@ export const firebaseConfig = {
         NgsRevealModule.forRoot(),
         AngularFireModule.initializeApp(firebaseConfig),
         StoreModule.provideStore(reducer),
+        StoreDevtoolsModule.instrumentOnlyWithExtension(),
+
 
         SectionModule,
         AdminModule

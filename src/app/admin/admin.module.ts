@@ -1,6 +1,7 @@
 import {NgModule} from "@angular/core";
 import {SharedModule} from "../shared/shared.module";
 import {AdminPageComponent} from "./admin-page.component";
+import {RsvpModule} from "../rsvp/rsvp.module";
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import {AdminPageComponent} from "./admin-page.component";
         AdminPageComponent,
     ],
     imports: [
-        SharedModule
+        SharedModule,
+        RsvpModule
     ],
     exports: [
         AdminPageComponent

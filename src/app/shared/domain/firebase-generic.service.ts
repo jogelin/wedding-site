@@ -1,42 +1,32 @@
 /**
  * Created by Joni on 28/12/2016.
  */
-import {Inject, Injectable} from "@angular/core";
-import {AngularFire, FirebaseListObservable, FirebaseObjectObservable} from "angularfire2";
+import {AngularFire, FirebaseListObservable} from "angularfire2";
 import {Observable} from "rxjs";
-import {Entity, FirebaseEntity} from "./entity.model";
-import {GenericService} from "./generic.service";
+import {FirebaseEntity} from "./entity.model";
 
-@Injectable()
-export class FirebaseGenericService<T extends FirebaseEntity> implements GenericService<T> {
+export class FirebaseGenericService<T extends FirebaseEntity> {
 
     private firebaseList$: FirebaseListObservable<T[]> = null;
-    private firebaseObject$: FirebaseObjectObservable<T> = null;
     private api: string = null;
 
-    constructor(api: string, @Inject(AngularFire) private _af: AngularFire = null) {
-        this.api = api
-    }
-
-    load($key:string): Observable<T> {
-        this.firebaseObject$ = this._af.database.object(this.api+'/'+$key);
-        return Observable.from(this.firebaseObject$);
+    constructor(api: string, private _af: AngularFire) {
+        this.api = api;
+        this.firebaseList$ = _af.database.list(this.api);
     }
 
     loadAll(): Observable<T[]> {
-        this.firebaseList$ = this._af.database.list(this.api);
-        return Observable.from(this._af.database.list(this.api));
+        return this.firebaseList$;
     }
 
-    save(entity: T): Observable<any> {
-        return (entity.$key === null) ? this.create(entity) : this.update(entity);
+    create({$key: $key, ...entity}): Observable<string> {
+        return Observable.from(this.firebaseList$.push(entity))
+            .map(ref => ref.key);
     }
 
-    create(entity: T): Observable<firebase.database.ThenableReference> {
-        return Observable.from(this.firebaseList$.push(entity));
-    }
-
-    update({$key: $key, ...entity}): Observable<void> {
-        return Observable.from(this.firebaseList$.update(`${$key}`, entity));
+    update({$key: $key, ...entity}): Observable<string> {
+        entity.updateDate = new Date().toISOString();
+        return Observable.from(this.firebaseList$.update($key, entity))
+            .mapTo($key);
     }
 }

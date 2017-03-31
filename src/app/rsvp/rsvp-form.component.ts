@@ -10,9 +10,9 @@ import {
     ViewChild
 } from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RsvpService} from "./domain/rsvp.service";
+import {GuestService} from "../guest/guest.service";
 import {Observable} from "rxjs";
-import {Rsvp} from "./domain/rsvp.model";
+import {Guest} from "../guest/guest.model";
 
 @Component({
     selector: 'wg-rsvp-form',
@@ -61,28 +61,31 @@ export class RsvpFormComponent implements OnInit, OnChanges, AfterViewInit {
     @ViewChild('confirmed') confirmed;
     @ViewChild('cancelled') cancelled;
 
-    @Input() rsvp: Rsvp;
-    @Output() saveRsvp = new EventEmitter();
+    @Input() guest: Guest;
+    @Output() saveGuest = new EventEmitter();
 
     form: FormGroup;
 
     private _emailRegex = RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'i');
 
-    constructor(private _fb: FormBuilder, private _rsvpService: RsvpService) {
-    }
-
-    ngOnInit(): void {
+    constructor(private _fb: FormBuilder, private _rsvpService: GuestService) {
         this.form = this._fb.group({
+            $key: [null],
             name: ['', Validators.required],
             email: ['', [Validators.required, Validators.pattern(this._emailRegex)]],
             confirmed: [true, Validators.required],
-            message: ['', Validators.required]
+            message: ['', Validators.required],
+            creationDate: [new Date().toISOString()],
+            updateDate: [new Date().toISOString()]
         });
     }
 
+    ngOnInit(): void {
+    }
+
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['rsvp'] && JSON.stringify(changes['rsvp'].previousValue) !== JSON.stringify(changes['rsvp'].currentValue)) {
-            this.form.patchValue(changes['rsvp']);
+        if (changes['guest'] && changes['guest'].currentValue && JSON.stringify(changes['guest'].previousValue) !== JSON.stringify(changes['guest'].currentValue)) {
+            this.form.patchValue(changes['guest'].currentValue);
         }
     }
 
@@ -93,7 +96,7 @@ export class RsvpFormComponent implements OnInit, OnChanges, AfterViewInit {
             .do((val) => this.form.get('confirmed').setValue(val))
             .map((val) => this.form.value)
             .subscribe((rsvp) => {
-                this.saveRsvp.emit(rsvp)
+                this.saveGuest.emit(rsvp)
             });
     }
 }

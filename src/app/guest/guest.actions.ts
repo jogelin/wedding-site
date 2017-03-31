@@ -1,30 +1,31 @@
 import {Action} from "@ngrx/store";
-import {type} from "../../shared/util";
-import {Rsvp} from "./rsvp.model";
+import {type} from "../shared/util";
+import {Guest} from "./guest.model";
 
 export const ActionTypes = {
-    LOAD: type('[Rsvp] Load'),
-    LOAD_SUCCESS: type('[Rsvp] Load success'),
-    LOAD_FAIL: type('[Rsvp] Load Fail'),
-    LOAD_LIST: type('[Rsvp] Load List'),
-    LOAD_LIST_SUCCESS: type('[Rsvp] Load List success'),
-    LOAD_LIST_FAIL: type('[Rsvp] Load List Fail'),
-    SAVE: type('[Rsvp] Save'),
-    SAVE_SUCCESS: type('[Rsvp] Save success'),
-    SAVE_FAIL: type('[Rsvp] Save Fail')
+    LOAD: type('[Guest] Load'),
+    LOAD_SUCCESS: type('[Guest] Load success'),
+    LOAD_FAIL: type('[Guest] Load Fail'),
+    LOAD_LIST: type('[Guest] Load List'),
+    LOAD_LIST_SUCCESS: type('[Guest] Load List success'),
+    LOAD_LIST_FAIL: type('[Guest] Load List Fail'),
+    SAVE: type('[Guest] Save'),
+    SAVE_SUCCESS: type('[Guest] Save success'),
+    SAVE_FAIL: type('[Guest] Save Fail'),
+    EDIT: type('[Guest] Edit')
 };
 
 export class LoadAction implements Action {
     type = ActionTypes.LOAD;
-
-    constructor(public payload: string) {
+    payload;
+    constructor() {
     }
 }
 
 export class LoadSuccessAction implements Action {
     type = ActionTypes.LOAD_SUCCESS;
 
-    constructor(public payload: Rsvp) {
+    constructor(public payload: string | null) {
     }
 }
 
@@ -37,7 +38,7 @@ export class LoadFailAction implements Action {
 
 export class LoadListAction implements Action {
     type = ActionTypes.LOAD_LIST;
-    payload;
+    payload
 
     constructor() {
     }
@@ -46,7 +47,7 @@ export class LoadListAction implements Action {
 export class LoadListSuccessAction implements Action {
     type = ActionTypes.LOAD_LIST_SUCCESS;
 
-    constructor(public payload: Rsvp[]) {
+    constructor(public payload: Guest[]) {
     }
 }
 
@@ -60,14 +61,14 @@ export class LoadListFailAction implements Action {
 export class SaveAction implements Action {
     type = ActionTypes.SAVE;
 
-    constructor(public payload: Rsvp) {
+    constructor(public payload: Guest) {
     }
 }
 
 export class SaveSuccessAction implements Action {
     type = ActionTypes.SAVE_SUCCESS;
 
-    constructor(public payload: Rsvp) {
+    constructor(public payload: string) {
     }
 }
 
@@ -77,6 +78,15 @@ export class SaveFailAction implements Action {
     constructor(public payload: any) {
     }
 }
+
+export class EditAction implements Action {
+    type = ActionTypes.EDIT;
+    payload;
+
+    constructor() {
+    }
+}
+
 export type Actions
     = LoadAction
     | LoadSuccessAction
@@ -86,4 +96,5 @@ export type Actions
     | LoadListFailAction
     | SaveAction
     | SaveSuccessAction
-    | SaveFailAction;
+    | SaveFailAction
+    | EditAction;

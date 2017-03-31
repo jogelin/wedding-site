@@ -3,17 +3,12 @@
  */
 
 export class Entity {
-    dateCreation: Date;
-    updateCreation: Date;
-
-    constructor() {
-        this.dateCreation = new Date();
-        this.updateCreation = new Date();
-    }
+    creationDate: string;
+    updateDate: strin;
 }
 
 export class FirebaseEntity extends Entity {
-    $key: string;
+    public $key: string;
 
     constructor($key: string = null) {
         super();

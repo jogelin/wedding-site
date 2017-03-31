@@ -2,18 +2,15 @@ import {ActionReducer, combineReducers} from "@ngrx/store";
 import {environment} from "../environments/environment";
 import {compose} from "@ngrx/core/compose";
 import {storeFreeze} from "ngrx-store-freeze";
-import * as fromRsvp from "./rsvp/domain/rsvp.reducer";
-import * as fromKadolog from "./kadolog/domain/kadolog.reducer";
+import * as fromRsvp from "./guest/guest.reducer";
 import {createSelector} from "reselect";
 
 export interface State {
-    rsvp: fromRsvp.State;
-    filter: fromKadolog.State;
+    guest: fromRsvp.State;
 }
 
 const reducers = {
     guest: fromRsvp.reducer,
-    filter: fromKadolog.reducer
 };
 
 const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
@@ -28,14 +25,18 @@ export function reducer(state: any, action: any) {
 }
 
 //RSVP
-export const getRsvpState = (state: State) => state.rsvp;
+export const getGuestState = (state: State) => state.guest;
 
-export const getRsvps = createSelector(getRsvpState, fromRsvp.getRsvps);
-export const getCurrentRsvp = createSelector(getRsvpState, fromRsvp.getCurrentRsvp);
-export const hasRsvp = createSelector(fromRsvp.getCurrentRsvp, (rsvp) => rsvp != null);
+export const getGuests = createSelector(getGuestState, fromRsvp.getGuests);
+export const getCurrentKey = createSelector(getGuestState, fromRsvp.getCurrentKey);
+export const getCurrentGuests = createSelector(getGuests, getCurrentKey, (guests, currentKey) => {
+    const filter = (guest) => guest.$key === currentKey;
+    return guests.some(filter) ? guests.filter(filter)[0]:null;
+});
+export const isEditing = createSelector(getGuestState, fromRsvp.isEditing);
 
 //KADOLOG
-// export const getKadologState = (state: State) => state.rsvp;
+// export const getKadologState = (state: State) => state.guest;
 //
 // export const getKadologs = createSelector(getKadologState, fromKadolog.getKadologs);
-// export const getCurrentKadolog = createSelector(getKadologState, fromKadolog.getCurrentRsvp);
+// export const getCurrentKadolog = createSelector(getKadologState, fromKadolog.getCurrentRsvpEmail);

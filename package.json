@@ -38,6 +38,7 @@
   "devDependencies": {
     "@angular/cli": "^1.0.0",
     "@angular/compiler-cli": "2.4.10",
+    "@ngrx/store-log-monitor": "^3.0.2",
     "@types/jasmine": "^2.5.45",
     "@types/node": "^7.0.8",
     "@types/scrollreveal": "^0.0.2",

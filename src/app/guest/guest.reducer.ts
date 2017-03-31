@@ -1,15 +1,17 @@
-import {Actions, ActionTypes} from "./rsvp.actions";
-import {Rsvp} from "./rsvp.model";
+import {Actions, ActionTypes} from "./guest.actions";
+import {Guest} from "./guest.model";
 
 
 export interface State {
-    rsvps: Rsvp[];
-    currentRsvp: Rsvp;
+    guests: Guest[];
+    currentKey: string;
+    editing: boolean;
 }
 
 export const initialState: State = {
-    rsvps: [],
-    currentRsvp: null
+    guests: [],
+    currentKey: null,
+    editing: true
 };
 
 export function reducer(state = initialState, action: Actions): State {
@@ -18,19 +20,27 @@ export function reducer(state = initialState, action: Actions): State {
 
         case ActionTypes.LOAD_SUCCESS: {
             return Object.assign({}, state, {
-                currentRsvp: action.payload
+                currentKey: action.payload,
+                editing: false
             });
         }
 
         case ActionTypes.LOAD_LIST_SUCCESS: {
             return Object.assign({}, state, {
-                rsvps: action.payload
+                guests: action.payload
             });
         }
 
         case ActionTypes.SAVE_SUCCESS: {
             return Object.assign({}, state, {
-                currentRsvp: action.payload
+                currentKey: action.payload,
+                editing: false
+            });
+        }
+
+        case ActionTypes.EDIT: {
+            return Object.assign({}, state, {
+                editing: true
             });
         }
 
@@ -47,5 +57,6 @@ export function reducer(state = initialState, action: Actions): State {
     }
 }
 
-export const getRsvps = (state: State) => state.rsvps;
-export const getCurrentRsvp = (state: State) => state.currentRsvp;
+export const getGuests = (state: State) => state.guests;
+export const getCurrentKey = (state: State) => state.currentKey;
+export const isEditing = (state: State) => state.editing;
