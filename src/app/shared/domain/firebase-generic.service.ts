@@ -19,12 +19,14 @@ export class FirebaseGenericService<T extends FirebaseEntity> {
         return this.firebaseList$;
     }
 
-    create({$key: $key, ...entity}): Observable<string> {
+    create(entity: FirebaseEntity): Observable<string> {
+        entity.updateDate = new Date().toISOString();
+        entity.creationDate = new Date().toISOString();
         return Observable.from(this.firebaseList$.push(entity))
             .map(ref => ref.key);
     }
 
-    update({$key: $key, ...entity}): Observable<string> {
+    update($key: string, entity: FirebaseEntity): Observable<string> {
         entity.updateDate = new Date().toISOString();
         return Observable.from(this.firebaseList$.update($key, entity))
             .mapTo($key);

@@ -34,7 +34,7 @@ export interface Map {
                     <div class="col-sm-12">
                         <div class="card-deck">
                             <div class="card mb-1" *ngFor="let map of maps">
-                                <sebm-google-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom">
+                                <sebm-google-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" [scrollwheel]="false">
                                     <sebm-google-map-marker
                                         *ngFor="let m of map.markers"
                                         [latitude]="m.lat"
@@ -76,7 +76,7 @@ export class SectionInfosComponent implements OnInit {
                         {
                             lat: 50.846798,
                             lng: 4.352414,
-                            label: 'Parking Grand Place',
+                            label: '',
                             address: 'Parking Grand Place<br>1000 Bruxelles<br>&nbsp;'
                         }
                     ]
@@ -94,7 +94,7 @@ export class SectionInfosComponent implements OnInit {
                         {
                             lat: 50.616484,
                             lng: 4.176258,
-                            label: 'Parking du Bois',
+                            label: '',
                             address: 'Allée de la Dinzelle 43<br>7090 Braine-le-Comte<br>&nbsp;'
                         }
                     ]
@@ -112,7 +112,7 @@ export class SectionInfosComponent implements OnInit {
                         {
                             lat: 50.603813,
                             lng: 4.135844,
-                            label: 'La Verrerie',
+                            label: '',
                             address: 'Parking gratuit de la gare<br>Rue de l’Industrie, 11<br>7090 Braine-le-Comte'
                         }
                     ]

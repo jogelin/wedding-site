@@ -13,11 +13,13 @@ import * as fromRoot from "../app.reducer";
 export class GuestService extends FirebaseGenericService<Guest> {
 
     scope$: Observable<string>;
+    currentGuest$: Observable<Guest>;
 
-    constructor(@Inject(AngularFire)_af: AngularFire, private _store: Store<fromRoot.State>)  {
+    constructor(@Inject(AngularFire)_af: AngularFire, private _store: Store<fromRoot.State>) {
         super('/guests', _af);
 
         this.scope$ = this._store.select(fromRoot.getScope);
+        this.currentGuest$ = this._store.select(fromRoot.getCurrentGuest);
     }
 
     load(): Observable<string | null> {
@@ -26,13 +28,16 @@ export class GuestService extends FirebaseGenericService<Guest> {
 
     save(guestToSave: Guest): Observable<string> {
         return Observable.of(guestToSave)
-            .withLatestFrom(this.scope$)
-            .map(([guest, scope]) => {
-                return Object.assign({}, guest, {scope:scope});
+            .withLatestFrom(this.scope$, this.currentGuest$)
+            .map(([guestToSave, scope, currentGuest]) =>{
+                const newGuest = Object.assign({},
+                    guestToSave, {
+                        scope: scope
+                    }) as Guest;
+                return (currentGuest !== null) ? this.update(currentGuest.$key, newGuest) : this.create(newGuest);
             })
-            .map((guest) => (guest.$key && guest.$key !== null)? this.update(guest) : this.create(guest))
             .switch()
-            .do(($key) => localStorage.setItem('guest',$key))
+            .do(($key) => localStorage.setItem('guest', $key))
             .do(($key) => console.log($key));
     }
 }

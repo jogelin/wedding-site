@@ -1,35 +1,34 @@
 import {Component, EventEmitter, Input, Output} from "@angular/core";
 import {Guest} from "../guest/guest.model";
+import {Kado} from "./kadolog.model";
 
 @Component({
-    selector: 'wg-rsvp-done',
+    selector: 'wg-kadolog-done',
     template: `
         <div class="row">
             <div class="col">
-                <h3>RSVP envoyée!</h3>
+                <h3>Kadolog enregistrée!</h3>
             </div>
         </div>
         <hr>
         <div class="row">
             <div class="col">
                 <p>
-                    Nous vous tiendrons au courant si il y a des modifications!
+                    Un  énorme merci pour votre participation
                 </p>
                 <p class="mb-0">
-                    <button class="btn btn-primary btn-sm" (click)="editRsvp.emit()">Modifier votre RSVP</button>
+                    <button class="btn btn-primary btn-sm" (click)="editKadolog.emit()">Modifier votre participation</button>
                 </p>
             </div>
         </div>
     `
 })
-export class RsvpDoneComponent {
+export class KadologDoneComponent {
 
-    @Input() guest: Guest;
-    @Output() editRsvp = new EventEmitter();
+    @Input() kadolog: Kado[];
+    @Output() editKadolog = new EventEmitter();
 
     constructor() {
 
     }
-
-
 }

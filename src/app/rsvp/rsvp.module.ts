@@ -1,7 +1,6 @@
 import {NgModule} from "@angular/core";
 import {RsvpFormComponent} from "./rsvp-form.component";
 import {RsvpDoneComponent} from "./rsvp-done.component";
-import {RsvpListComponent} from "./rsvp-list.component";
 import {SharedModule} from "../shared/shared.module";
 import {GuestModule} from "../guest/guest.module";
 
@@ -9,8 +8,7 @@ import {GuestModule} from "../guest/guest.module";
 @NgModule({
     declarations: [
         RsvpFormComponent,
-        RsvpDoneComponent,
-        RsvpListComponent
+        RsvpDoneComponent
     ],
     imports: [
         SharedModule,
@@ -18,8 +16,7 @@ import {GuestModule} from "../guest/guest.module";
     ],
     exports: [
         RsvpFormComponent,
-        RsvpDoneComponent,
-        RsvpListComponent
+        RsvpDoneComponent
     ]
 })
 export class RsvpModule {

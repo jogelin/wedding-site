@@ -5,4 +5,10 @@ export class Guest extends FirebaseEntity {
     confirmed: boolean;
     message: string;
     scope: string;
+    kados: GuestKado[];
+}
+
+export interface GuestKado {
+    kadoKey: string;
+    quantity: string;
 }

@@ -2,6 +2,8 @@ import {NgModule} from "@angular/core";
 import {SharedModule} from "../shared/shared.module";
 import {AdminPageComponent} from "./admin-page.component";
 import {RsvpModule} from "../rsvp/rsvp.module";
+import {GuestModule} from "../guest/guest.module";
+import {RoutesModule} from "./admin.routing";
 
 
 @NgModule({
@@ -10,10 +12,8 @@ import {RsvpModule} from "../rsvp/rsvp.module";
     ],
     imports: [
         SharedModule,
-        RsvpModule
-    ],
-    exports: [
-        AdminPageComponent
+        GuestModule,
+        RoutesModule
     ]
 })
 export class AdminModule {

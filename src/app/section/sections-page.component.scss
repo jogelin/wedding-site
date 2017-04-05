@@ -29,7 +29,7 @@ $bgContact: #34434C;
     background-color: $bgWhere;
 }
 
-:host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree {
+:host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp {
     color: white;
     text-align: center;
 }
@@ -48,9 +48,6 @@ $bgContact: #34434C;
 
 :host /deep/ #rsvp {
     background-color: $bgRsvp;
-    small {
-        color:#FFFFFF;
-    }
 }
 
 #gift {
@@ -72,14 +69,3 @@ $bgContact: #34434C;
     border-color: $bgCeleb;
 }
 
-:host /deep/ .alert-success {
-    background-color: $bgContact;
-    border-color: $bgContact;
-    color: white;
-}
-
-:host /deep/ .badge-success {
-    background-color: $bgHome;
-    border-color: $bgHome;
-    color: white;
-}

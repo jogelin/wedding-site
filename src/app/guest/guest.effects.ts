@@ -12,8 +12,8 @@ import {
     LoadListFailAction,
     LoadListSuccessAction,
     LoadSuccessAction,
-    SaveFailAction,
-    SaveSuccessAction
+    SaveFailRsvpAction,
+    SaveSuccessRsvpAction
 } from "./guest.actions";
 import {Action} from "@ngrx/store";
 
@@ -33,12 +33,12 @@ export class GuestEffects {
 
     @Effect()
     saveGuest$: Observable<Action> = this._actions$
-        .ofType(ActionTypes.SAVE)
+        .ofType(ActionTypes.SAVE_RSVP)
         .map(toPayload)
         .switchMap((payload: Guest) =>
             this._service.save(payload)
-                .map($key => new SaveSuccessAction($key))
-                .catch(error => Observable.of(new SaveFailAction(error)))
+                .map($key => new SaveSuccessRsvpAction($key))
+                .catch(error => Observable.of(new SaveFailRsvpAction(error)))
         );
 
     @Effect()

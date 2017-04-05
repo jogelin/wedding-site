@@ -1,6 +1,7 @@
 import {Action} from "@ngrx/store";
 import {type} from "../shared/util";
 import {Guest} from "./guest.model";
+import {Kado} from "../kadolog/kadolog.model";
 
 export const ActionTypes = {
     LOAD: type('[Guest] Load'),
@@ -9,15 +10,18 @@ export const ActionTypes = {
     LOAD_LIST: type('[Guest] Load List'),
     LOAD_LIST_SUCCESS: type('[Guest] Load List success'),
     LOAD_LIST_FAIL: type('[Guest] Load List Fail'),
-    SAVE: type('[Guest] Save'),
-    SAVE_SUCCESS: type('[Guest] Save success'),
-    SAVE_FAIL: type('[Guest] Save Fail'),
-    EDIT: type('[Guest] Edit')
+    SAVE_RSVP: type('[Guest] Rsvp Save'),
+    SAVE_SUCCESS_RSVP: type('[Guest] Save Rsvp success'),
+    SAVE_FAIL_RSVP: type('[Guest] Save Rsvp Fail'),
+    SAVE_KADOLOG: type('[Guest] Kadolog Save'),
+    SAVE_SUCCESS_KADOLOG: type('[Guest] Save Kadolog success'),
+    SAVE_FAIL_KADOLOG: type('[Guest] Save Kadolog Fail')
 };
 
 export class LoadAction implements Action {
     type = ActionTypes.LOAD;
     payload;
+
     constructor() {
     }
 }
@@ -38,7 +42,7 @@ export class LoadFailAction implements Action {
 
 export class LoadListAction implements Action {
     type = ActionTypes.LOAD_LIST;
-    payload
+    payload;
 
     constructor() {
     }
@@ -58,32 +62,44 @@ export class LoadListFailAction implements Action {
     }
 }
 
-export class SaveAction implements Action {
-    type = ActionTypes.SAVE;
+export class SaveRsvpAction implements Action {
+    type = ActionTypes.SAVE_RSVP;
 
     constructor(public payload: Guest) {
     }
 }
 
-export class SaveSuccessAction implements Action {
-    type = ActionTypes.SAVE_SUCCESS;
+export class SaveSuccessRsvpAction implements Action {
+    type = ActionTypes.SAVE_SUCCESS_RSVP;
 
     constructor(public payload: string) {
     }
 }
 
-export class SaveFailAction implements Action {
-    type = ActionTypes.SAVE_FAIL;
+export class SaveFailRsvpAction implements Action {
+    type = ActionTypes.SAVE_FAIL_RSVP;
 
     constructor(public payload: any) {
     }
 }
+export class SaveKadologAction implements Action {
+    type = ActionTypes.SAVE_RSVP;
 
-export class EditAction implements Action {
-    type = ActionTypes.EDIT;
-    payload;
+    constructor(public payload: Kado[]) {
+    }
+}
 
-    constructor() {
+export class SaveSuccessKadologAction implements Action {
+    type = ActionTypes.SAVE_SUCCESS_RSVP;
+
+    constructor(public payload: string) {
+    }
+}
+
+export class SaveFailKadologAction implements Action {
+    type = ActionTypes.SAVE_FAIL_RSVP;
+
+    constructor(public payload: any) {
     }
 }
 
@@ -94,7 +110,9 @@ export type Actions
     | LoadListAction
     | LoadListSuccessAction
     | LoadListFailAction
-    | SaveAction
-    | SaveSuccessAction
-    | SaveFailAction
-    | EditAction;
+    | SaveRsvpAction
+    | SaveSuccessRsvpAction
+    | SaveFailRsvpAction
+    | SaveKadologAction
+    | SaveSuccessKadologAction
+    | SaveFailKadologAction;

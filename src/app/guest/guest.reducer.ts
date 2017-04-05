@@ -5,13 +5,11 @@ import {Guest} from "./guest.model";
 export interface State {
     guests: Guest[];
     currentKey: string;
-    editing: boolean;
 }
 
 export const initialState: State = {
     guests: [],
-    currentKey: null,
-    editing: true
+    currentKey: null
 };
 
 export function reducer(state = initialState, action: Actions): State {
@@ -20,8 +18,7 @@ export function reducer(state = initialState, action: Actions): State {
 
         case ActionTypes.LOAD_SUCCESS: {
             return Object.assign({}, state, {
-                currentKey: action.payload,
-                editing: false
+                currentKey: action.payload
             });
         }
 
@@ -31,22 +28,15 @@ export function reducer(state = initialState, action: Actions): State {
             });
         }
 
-        case ActionTypes.SAVE_SUCCESS: {
+        case ActionTypes.SAVE_SUCCESS_RSVP: {
             return Object.assign({}, state, {
-                currentKey: action.payload,
-                editing: false
-            });
-        }
-
-        case ActionTypes.EDIT: {
-            return Object.assign({}, state, {
-                editing: true
+                currentKey: action.payload
             });
         }
 
         case ActionTypes.LOAD_FAIL:
         case ActionTypes.LOAD_LIST_FAIL:
-        case ActionTypes.SAVE_FAIL: {
+        case ActionTypes.SAVE_FAIL_RSVP: {
             console.error(action.type);
             return state;
         }
@@ -59,4 +49,3 @@ export function reducer(state = initialState, action: Actions): State {
 
 export const getGuests = (state: State) => state.guests;
 export const getCurrentKey = (state: State) => state.currentKey;
-export const isEditing = (state: State) => state.editing;

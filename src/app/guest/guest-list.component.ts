@@ -2,10 +2,10 @@ import {Component, OnInit} from "@angular/core";
 import * as fromRoot from "../app.reducer";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
-import {Guest} from "../guest/guest.model";
+import {Guest} from "./guest.model";
 
 @Component({
-    selector: 'wg-rsvp-list',
+    selector: 'wg-guest-list',
     template: `
         <div class="container">
             <div class="row">
@@ -22,16 +22,16 @@ import {Guest} from "../guest/guest.model";
                         </tr>
                         </thead>
                         <tbody>
-                        <tr *ngFor="let rsvp of guest$ | async">
-                            <th scope="row">{{rsvp.$key}}</th>
-                            <td>{{rsvp.name}}</td>
-                            <td>{{rsvp.email}}</td>
+                        <tr *ngFor="let guest of guest$ | async">
+                            <th scope="row">{{guest.$key}}</th>
+                            <td>{{guest.name}}</td>
+                            <td>{{guest.email}}</td>
                             <td>
-                                <i class="fa fa-ok" *ngIf="rsvp.confirmed"></i>
-                                <i class="fa f" *ngIf="!rsvp.confirmed">Je ne viens pas...</i>
+                                <i class="fa fa-ok" *ngIf="guest.validate"></i>
+                                <i class="fa f" *ngIf="!guest.validate">Je ne viens pas...</i>
                             </td>
-                            <td>{{rsvp.date | date:'medium'}}</td>
-                            <td>{{rsvp.message}}</td>
+                            <td>{{guest.date | date:'medium'}}</td>
+                            <td>{{guest.message}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -40,7 +40,7 @@ import {Guest} from "../guest/guest.model";
         </div>
     `
 })
-export class RsvpListComponent implements OnInit {
+export class GuestListComponent implements OnInit {
 
     guest$: Observable<Guest[]>;
 

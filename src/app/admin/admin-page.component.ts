@@ -11,7 +11,7 @@ import {Store} from "@ngrx/store";
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <wg-rsvp-list></wg-rsvp-list>
+                        <wg-guest-list></wg-guest-list>
                     </div>
                 </div>
                 <div class="row">

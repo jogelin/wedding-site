@@ -4,7 +4,7 @@
 
 export class Entity {
     creationDate: string;
-    updateDate: strin;
+    updateDate: string;
 }
 
 export class FirebaseEntity extends Entity {
