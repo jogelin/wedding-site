@@ -15,7 +15,7 @@ import * as guest from "../guest/guest.actions";
                     <wg-kadolog-not-available *ngSwitchCase="kadologShowType.NOT_AVAILABLE"></wg-kadolog-not-available>
                     <wg-kadolog-form-save *ngSwitchCase="kadologShowType.SAVE_FORM"
                                           [kadolog]="kadolog$ | async"
-                                          [currentGuestKadoKeys]="currentGuestKadoKeys$ | async"
+                                          [currentGuestKado]="currentGuestKado$ | async"
                                           (saveKadolog)="handleSaveKadolog($event)">
                     </wg-kadolog-form-save>
                     <wg-kadolog-done *ngSwitchCase="kadologShowType.DONE" [kadolog]="guestKadolog$ | async" (showSaveForm)="handleShowSaveForm($event)"></wg-kadolog-done>
@@ -26,7 +26,7 @@ import * as guest from "../guest/guest.actions";
 })
 export class SectionKadologComponent implements OnInit {
     kadolog$: Observable<Kado[]>;
-    currentGuestKadoKeys$: Observable<string[]>;
+    currentGuestKado$: Observable<Kado[]>;
     show$: Observable<KadologShowType>;
 
     kadologShowType = KadologShowType;
@@ -36,7 +36,7 @@ export class SectionKadologComponent implements OnInit {
 
     ngOnInit(): void {
         this.kadolog$ = this._store.select(fromRoot.getKadolog);
-        this.currentGuestKadoKeys$ = this._store.select(fromRoot.getCurrentGuestKadoKeys);
+        this.currentGuestKado$ = this._store.select(fromRoot.getCurrentGuestKado);
 
         this.show$ = this._store.select(fromRoot.getShowKadolog);
 

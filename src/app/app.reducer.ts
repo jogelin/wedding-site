@@ -62,4 +62,9 @@ export const getCurrentGuest = createSelector(getGuests, getCurrentKey, (guests,
     return guests.some(filter) ? guests.filter(filter)[0] : null;
 });
 export const guestHasRsvped = createSelector(getCurrentKey, currentKey => currentKey !== null);
-export const getCurrentGuestKadoKeys = createSelector(getCurrentGuest, (currentGuest) => currentGuest && currentGuest.kadoKeys ? currentGuest.kadoKeys:[]);
+export const getCurrentGuestKado = createSelector(getCurrentGuest, getKadolog, (currentGuest, kadolog) => {
+    if(currentGuest == null || !currentGuest.kadoKeys) {
+        return [];
+    }
+    return kadolog.filter(kado => currentGuest.kadoKeys.includes(kado.$key));
+});

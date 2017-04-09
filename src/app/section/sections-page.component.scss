@@ -78,13 +78,13 @@ $bgContact: #34434C;
     }
 }
 
-:host /deep/ .btn-primary  {
+:host /deep/ .btn-primary {
     color: #fff;
     background-color: $bgCeleb;
     border-color: $bgCeleb;
 }
 
-:host /deep/ .btn-outline-primary  {
+:host /deep/ .btn-outline-primary {
     color: $bgCeleb;
     border-color: $bgCeleb;
     &:hover {
@@ -111,5 +111,15 @@ $bgContact: #34434C;
 
     .img-thumbnail {
         background-color: $bgCivil;
+        color: #fff;
+        width:48px;
+        height:48px;
+        font-size: 36px;
+        text-align: center;
     }
+}
+
+:host /deep/ .card-basket {
+    background-color: $bgCivil;
+    color: #fff;
 }

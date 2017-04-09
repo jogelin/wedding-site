@@ -21,10 +21,10 @@ import {Kado} from "./kadolog.model";
                     <div class="card-columns">
                         <div class="card mb-3" *ngFor="let kado of kadolog">
                             <div class="card-block">
-                                <img class="img-thumbnail mr-2 mb-2" src="./assets/{{kado.$key}}.png">
+                                <i class="img-thumbnail mr-2 mb-2 fa" [ngClass]="'fa-'+kado.$key"></i>
                                 <strong>{{kado.title}}</strong>
                                 <p class="card-text">{{kado.description}}</p>
-                                <button type="button" class="btn" [ngClass]="{'btn-primary': participate(kado.$key), 'btn-outline-primary': !participate(kado.$key)}" (click)="toggleParticipation(kado.$key)">
+                                <button type="button" class="btn" [ngClass]="{'btn-primary': participate(kado.$key), 'btn-outline-primary': !participate(kado.$key)}" (click)="toggleParticipation(kado)">
                                     Je participe
                                 </button>
                             </div>
@@ -32,17 +32,25 @@ import {Kado} from "./kadolog.model";
                     </div>
                 </div>
                 <div class="col-md-4">
-                    lmkh
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-4 col-md-5">
-                    <button [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed>
-                        Je valide !
-                    </button>
+                    <div class="card card-basket mb-3">
+                        <div class="card-block">
+                            <!--<img class="img-thumbnail mr-2 mb-2" src="./assets/{{kado.$key}}.png">-->
+                            <strong>Panier</strong>
+                                <ul class="fa-ul">
+                                    <li *ngFor="let kado of kadoKeys.controls">
+                                    <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i>
+                                        {{kado.title}}
+                                    </li>
+                                </ul>
+                            <button [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed>
+                                Je valide !
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
+        {{currentGuestKado | json}}
     `
 })
 export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
@@ -50,7 +58,7 @@ export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
     @ViewChild('confirmed') confirmed;
 
     @Input() kadolog: Kado[];
-    @Input() currentGuestKadoKeys: string[];
+    @Input() currentGuestKado: Kado[];
     @Output() saveKadolog = new EventEmitter();
 
     form: FormGroup;
@@ -67,8 +75,8 @@ export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
 
 
     ngOnChanges(changes: SimpleChanges): void {
-        if (changes['currentGuestKadoKeys'] && changes['currentGuestKadoKeys'].currentValue && JSON.stringify(changes['currentGuestKadoKeys'].previousValue) !== JSON.stringify(changes['currentGuestKadoKeys'].currentValue)) {
-            this.kadoKeys.setValue(changes['currentGuestKadoKeys'].currentValue);
+        if (changes['currentGuestKado'] && changes['currentGuestKado'].currentValue && JSON.stringify(changes['currentGuestKado'].previousValue) !== JSON.stringify(changes['currentGuestKado'].currentValue)) {
+            this.kadoKeys.setValue(changes['currentGuestKado'].currentValue);
         }
     }
 
