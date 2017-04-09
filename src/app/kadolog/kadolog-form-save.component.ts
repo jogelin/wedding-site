@@ -17,7 +17,7 @@ import {Kado} from "./kadolog.model";
     template: `
         <form [formGroup]="form">
             <div class="form-group row">
-                <div class="col">
+                <div class="col-md-8">
                     <div class="card-columns">
                         <div class="card mb-3" *ngFor="let kado of kadolog">
                             <div class="card-block">
@@ -30,6 +30,9 @@ import {Kado} from "./kadolog.model";
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="col-md-4">
+                    lmkh
                 </div>
             </div>
             <div class="form-group row">
