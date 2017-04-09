@@ -24,7 +24,7 @@ import {Kado} from "./kadolog.model";
                                 <i class="img-thumbnail mr-2 mb-2 fa" [ngClass]="'fa-'+kado.$key"></i>
                                 <strong>{{kado.title}}</strong>
                                 <p class="card-text">{{kado.description}}</p>
-                                <button type="button" class="btn" [ngClass]="{'btn-primary': participate(kado.$key), 'btn-outline-primary': !participate(kado.$key)}" (click)="toggleParticipation(kado)">
+                                <button type="button" class="btn" [ngClass]="{'btn-primary': participate(kado), 'btn-outline-primary': !participate(kado)}" (click)="toggleParticipation(kado)">
                                     Je participe
                                 </button>
                             </div>
@@ -34,14 +34,13 @@ import {Kado} from "./kadolog.model";
                 <div class="col-md-4">
                     <div class="card card-basket mb-3">
                         <div class="card-block">
-                            <!--<img class="img-thumbnail mr-2 mb-2" src="./assets/{{kado.$key}}.png">-->
                             <strong>Panier</strong>
-                                <ul class="fa-ul">
-                                    <li *ngFor="let kado of kadoKeys.controls">
+                            <ul class="fa-ul">
+                                <li *ngFor="let kado of kados.value">
                                     <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i>
-                                        {{kado.title}}
-                                    </li>
-                                </ul>
+                                    {{kado.title}}
+                                </li>
+                            </ul>
                             <button [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed>
                                 Je valide !
                             </button>
@@ -50,6 +49,7 @@ import {Kado} from "./kadolog.model";
                 </div>
             </div>
         </form>
+        {{form.value | json}}
         {{currentGuestKado | json}}
     `
 })
@@ -65,37 +65,37 @@ export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
 
     constructor(private _fb: FormBuilder) {
         this.form = this._fb.group({
-            kadoKeys: this._fb.array([])
+            kados: this._fb.array([])
         });
     }
 
-    get kadoKeys(): FormArray {
-        return this.form.get('kadoKeys') as FormArray;
+    get kados(): FormArray {
+        return this.form.get('kados') as FormArray;
     }
 
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['currentGuestKado'] && changes['currentGuestKado'].currentValue && JSON.stringify(changes['currentGuestKado'].previousValue) !== JSON.stringify(changes['currentGuestKado'].currentValue)) {
-            this.kadoKeys.setValue(changes['currentGuestKado'].currentValue);
+            this.kados.setValue(changes['currentGuestKado'].currentValue);
         }
     }
 
     ngAfterViewInit() {
         Observable.fromEvent(this.confirmed.nativeElement, 'click')
-            .map((val) => this.form.value)
-            .subscribe(kadoKeys => this.saveKadolog.emit(kadoKeys.value));
+            .map((val) => this.form.get('kados').value)
+            .subscribe(kados => this.saveKadolog.emit(kados.map(kado => kado.$key)));
     }
 
-    toggleParticipation($key: string) {
-        if (this.participate($key)) {
-             this.kadoKeys.removeAt(this.kadoKeys.value.indexOf($key));
+    toggleParticipation(kado: Kado) {
+        if (this.participate(kado)) {
+            this.kados.removeAt(this.kados.controls.findIndex(control => control.value.$key === kado.$key));
         } else {
-            this.kadoKeys.push(this._fb.control($key));
+            this.kados.push(this._fb.control(kado));
         }
     }
 
-    participate($key: string):boolean {
-        return this.kadoKeys.value.includes($key);
+    participate(kado: Kado): boolean {
+        return this.kados.controls.some(control => control.value.$key === kado.$key);
     }
 
 }

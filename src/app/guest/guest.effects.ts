@@ -16,6 +16,7 @@ import {
     SaveSuccessRsvpAction, UpdateKadoParticipationFailAction, UpdateKadoParticipationSuccessAction
 } from "./guest.actions";
 import {Action} from "@ngrx/store";
+import {Kado} from "../kadolog/kadolog.model";
 
 @Injectable()
 export class GuestEffects {
