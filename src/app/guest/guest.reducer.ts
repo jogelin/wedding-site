@@ -28,7 +28,8 @@ export function reducer(state = initialState, action: Actions): State {
             });
         }
 
-        case ActionTypes.SAVE_SUCCESS_RSVP: {
+        case ActionTypes.SAVE_SUCCESS_RSVP:
+        case ActionTypes.UPDATE_KADO_PARTICIPATION_SUCCESS: {
             return Object.assign({}, state, {
                 currentKey: action.payload
             });
@@ -36,6 +37,7 @@ export function reducer(state = initialState, action: Actions): State {
 
         case ActionTypes.LOAD_FAIL:
         case ActionTypes.LOAD_LIST_FAIL:
+        case ActionTypes.UPDATE_KADO_PARTICIPATION_FAIL:
         case ActionTypes.SAVE_FAIL_RSVP: {
             console.error(action.type);
             return state;

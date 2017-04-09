@@ -4,7 +4,8 @@ import {Guest} from "./guest.model";
 import {Kado} from "../kadolog/kadolog.model";
 
 export const ActionTypes = {
-    LOAD: type('[Guest] Load'),
+    LOAD_FROM_LOCAL: type('[Guest] Load From Local'),
+    LOAD_FROM_EMAIL: type('[Guest] Load From Email'),
     LOAD_SUCCESS: type('[Guest] Load success'),
     LOAD_FAIL: type('[Guest] Load Fail'),
     LOAD_LIST: type('[Guest] Load List'),
@@ -13,16 +14,23 @@ export const ActionTypes = {
     SAVE_RSVP: type('[Guest] Rsvp Save'),
     SAVE_SUCCESS_RSVP: type('[Guest] Save Rsvp success'),
     SAVE_FAIL_RSVP: type('[Guest] Save Rsvp Fail'),
-    SAVE_KADOLOG: type('[Guest] Kadolog Save'),
-    SAVE_SUCCESS_KADOLOG: type('[Guest] Save Kadolog success'),
-    SAVE_FAIL_KADOLOG: type('[Guest] Save Kadolog Fail')
+    UPDATE_KADO_PARTICIPATION: type('[Guest] Update Kado Participation'),
+    UPDATE_KADO_PARTICIPATION_SUCCESS: type('[Guest] Update Kado Participation success'),
+    UPDATE_KADO_PARTICIPATION_FAIL: type('[Guest] Update Kado Participation Fail')
 };
 
-export class LoadAction implements Action {
-    type = ActionTypes.LOAD;
+export class LoadFromLocalAction implements Action {
+    type = ActionTypes.LOAD_FROM_LOCAL;
     payload;
 
     constructor() {
+    }
+}
+
+export class LoadFromEmailAction implements Action {
+    type = ActionTypes.LOAD_FROM_EMAIL;
+
+    constructor(public payload: string) {
     }
 }
 
@@ -82,29 +90,29 @@ export class SaveFailRsvpAction implements Action {
     constructor(public payload: any) {
     }
 }
-export class SaveKadologAction implements Action {
-    type = ActionTypes.SAVE_RSVP;
+export class UpdateKadoParticipationAction implements Action {
+    type = ActionTypes.UPDATE_KADO_PARTICIPATION;
 
     constructor(public payload: Kado[]) {
     }
 }
 
-export class SaveSuccessKadologAction implements Action {
-    type = ActionTypes.SAVE_SUCCESS_RSVP;
+export class UpdateKadoParticipationSuccessAction implements Action {
+    type = ActionTypes.UPDATE_KADO_PARTICIPATION_SUCCESS;
 
     constructor(public payload: string) {
     }
 }
 
-export class SaveFailKadologAction implements Action {
-    type = ActionTypes.SAVE_FAIL_RSVP;
+export class UpdateKadoParticipationFailAction implements Action {
+    type = ActionTypes.UPDATE_KADO_PARTICIPATION_FAIL;
 
     constructor(public payload: any) {
     }
 }
 
 export type Actions
-    = LoadAction
+    = LoadFromLocalAction
     | LoadSuccessAction
     | LoadFailAction
     | LoadListAction
@@ -113,6 +121,6 @@ export type Actions
     | SaveRsvpAction
     | SaveSuccessRsvpAction
     | SaveFailRsvpAction
-    | SaveKadologAction
-    | SaveSuccessKadologAction
-    | SaveFailKadologAction;
+    | UpdateKadoParticipationAction
+    | UpdateKadoParticipationSuccessAction
+    | UpdateKadoParticipationFailAction;

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Pompiere');
+
 $bgHome: #DDC976;
 $bgWhere: #FFFFFF;
 $bgCivil: #78989B;
@@ -6,6 +8,11 @@ $bgSoiree: #34434C;
 $bgRsvp: #DDC976;
 $bgGift: #FFF;
 $bgContact: #34434C;
+
+.font-pompiere {
+    font-size: 24px;
+    font-family: 'Pompiere', cursive;
+}
 
 #fanion {
     background: $bgHome url(../../assets/fanion.svg) no-repeat center center;
@@ -32,6 +39,7 @@ $bgContact: #34434C;
 :host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp {
     color: white;
     text-align: center;
+    @extend .font-pompiere;
 }
 
 :host /deep/ #civil {
@@ -46,12 +54,18 @@ $bgContact: #34434C;
     background-color: $bgSoiree;
 }
 
+:host /deep/ #infos {
+    @extend .font-pompiere;
+}
+
 :host /deep/ #rsvp {
     background-color: $bgRsvp;
 }
 
-#gift {
+:host /deep/ #kadolog {
     background-color: $bgGift;
+    color: black;
+
 }
 
 #contact {
@@ -67,5 +81,10 @@ $bgContact: #34434C;
     color: #fff;
     background-color: $bgCeleb;
     border-color: $bgCeleb;
+}
+
+:host /deep/ .btn-outline-secondary {
+    color: #fff;
+    border-color: #fff;
 }
 

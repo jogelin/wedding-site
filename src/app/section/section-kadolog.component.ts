@@ -11,30 +11,24 @@ import * as guest from "../guest/guest.actions";
     template: `
         <section id="kadolog" class="section-padding">
             <div class="container">
-                <div class="row">
-                    <img src="../../assets/kado_title.svg" class="col-sm-12 col-md-6 offset-md-3" alt="Responsive image">
-                </div>
-                <hr>
-                <div class="row">
-                    <div class="col">
-                        <wg-kado-form *ngIf="editing$ | async" [kadolog]="kadolog$ | async" (saveKadolog)="handleSaveKadolog($event)"></wg-kado-form>
-                        <wg-kado-done *ngIf="!(editing$ | async)" [kadolog]="kadolog$ | async" (editKadolog)="handleEditKadolog($event)"></wg-kado-done>
-                    </div>
-                </div>
+                <wg-kadolog-form *ngIf="editing$ | async" [kadolog]="guestKadolog$ | async" (saveKadolog)="handleSaveKadolog($event)"></wg-kadolog-form>
+                <wg-kadolog-done *ngIf="!(editing$ | async)" [kadolog]="guestKadolog$ | async" (editKadolog)="handleEditKadolog($event)"></wg-kadolog-done>
             </div>
         </section>
     `
 })
-export class SectionRsvpComponent implements OnInit {
-    kadolog$: Observable<Kado[]>;
+export class SectionKadologComponent implements OnInit {
+    guestKadolog$: Observable<Kado[]>;
     editing$: Observable<boolean>;
+    guestHasRsvped: Observable<boolean>;
 
     constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.kadolog$ = this._store.select(fromRoot.getKadolog);
+        this.guestKadolog$ = this._store.select(fromRoot.getGuestKadolog);
         this.editing$ = this._store.select(fromRoot.isEditingKadolog);
+        this.guestHasRsvped = this._store.select(fromRoot.guestHasRsvped);
     }
 
     handleEditKadolog() {
@@ -42,6 +36,6 @@ export class SectionRsvpComponent implements OnInit {
     }
 
     handleSaveKadolog(kado: Kado[]) {
-        this._store.dispatch(new guest.SaveKadologAction(kado));
+        this._store.dispatch(new guest.UpdateKadoParticipationAction(kado));
     }
 }

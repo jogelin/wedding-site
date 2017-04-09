@@ -13,7 +13,7 @@ import {
     LoadListSuccessAction,
     LoadSuccessAction,
     SaveFailRsvpAction,
-    SaveSuccessRsvpAction
+    SaveSuccessRsvpAction, UpdateKadoParticipationFailAction, UpdateKadoParticipationSuccessAction
 } from "./guest.actions";
 import {Action} from "@ngrx/store";
 
@@ -23,10 +23,20 @@ export class GuestEffects {
     }
 
     @Effect()
-    loadGuest$: Observable<Action> = this._actions$
-        .ofType(ActionTypes.LOAD)
+    loadGuestFromLocal$: Observable<Action> = this._actions$
+        .ofType(ActionTypes.LOAD_FROM_LOCAL)
         .switchMap(() =>
-            this._service.load()
+            this._service.loadFromLocal()
+                .map(($key: string) => new LoadSuccessAction($key))
+                .catch(error => Observable.of(new LoadFailAction(error)))
+        );
+
+    @Effect()
+    loadGuestFromEmail$: Observable<Action> = this._actions$
+        .ofType(ActionTypes.LOAD_FROM_EMAIL)
+        .map(toPayload)
+        .switchMap((payload: string) =>
+            this._service.loadFromEmail(payload)
                 .map(($key: string) => new LoadSuccessAction($key))
                 .catch(error => Observable.of(new LoadFailAction(error)))
         );
@@ -39,6 +49,17 @@ export class GuestEffects {
             this._service.save(payload)
                 .map($key => new SaveSuccessRsvpAction($key))
                 .catch(error => Observable.of(new SaveFailRsvpAction(error)))
+        );
+
+
+    @Effect()
+    updateKadoParticipation$: Observable<Action> = this._actions$
+        .ofType(ActionTypes.UPDATE_KADO_PARTICIPATION)
+        .map(toPayload)
+        .switchMap((payload: string[]) =>
+            this._service.updateKadoParticipation(payload)
+                .map($key => new UpdateKadoParticipationSuccessAction($key))
+                .catch(error => Observable.of(new UpdateKadoParticipationFailAction(error)))
         );
 
     @Effect()

@@ -88,15 +88,7 @@ import {UpdateAction} from "../scope/scope.actions";
         </wg-section-part>
         <wg-section-infos></wg-section-infos>
         <wg-section-rsvp></wg-section-rsvp>
-        <section id="gift" class="section-padding">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        Cadeau log
-                    </div>
-                </div>
-            </div>
-        </section>
+        <wg-section-kadolog></wg-section-kadolog>
         <section id="contact">
             <div class="container">
                 <div class="row">

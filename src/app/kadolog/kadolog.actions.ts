@@ -6,7 +6,7 @@ export const ActionTypes = {
     LOAD_LIST: type('[Kadolog] Load List'),
     LOAD_LIST_SUCCESS: type('[Kadolog] Load List success'),
     LOAD_LIST_FAIL: type('[Kadolog] Load List Fail'),
-    EDIT: type('[Kadolog] Edit')
+    SHOW: type('[Kadolog] Edit')
 };
 
 export class LoadListAction implements Action {
@@ -32,7 +32,7 @@ export class LoadListFailAction implements Action {
 }
 
 export class EditAction implements Action {
-    type = ActionTypes.EDIT;
+    type = ActionTypes.SHOW;
     payload;
 
     constructor() {

@@ -6,12 +6,14 @@ import {GuestModule} from "../guest/guest.module";
 import {KadologService} from "./kadolog.service";
 import {EffectsModule} from "@ngrx/effects";
 import {KadologEffects} from "./kadolog.effects";
+import {KadologNotAvailableComponent} from "./kadolog-not-available.component";
 
 
 @NgModule({
     declarations: [
         KadologFormComponent,
-        KadologDoneComponent
+        KadologDoneComponent,
+        KadologNotAvailableComponent
     ],
     imports: [
         SharedModule,

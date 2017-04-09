@@ -1,29 +1,33 @@
 import * as rsvp from "./rsvp.actions";
 import * as guest from "../guest/guest.actions";
 
+export enum RsvpShowType {
+    LOAD_FORM, SAVE_FORM, DONE
+}
+
 export interface State {
-    editing: boolean;
+    show: RsvpShowType;
 }
 
 export const initialState: State = {
-    editing: true
+    show: RsvpShowType.SAVE_FORM
 };
 
 export function reducer(state = initialState, action: rsvp.Actions | guest.Actions): State {
 
     switch (action.type) {
 
-        case rsvp.ActionTypes.EDIT: {
-            return Object.assign({}, state, {
-                editing: true
-            });
+        case rsvp.ActionTypes.SHOW: {
+            return  {
+                show: action.payload as RsvpShowType
+            };
         }
 
         case guest.ActionTypes.SAVE_SUCCESS_RSVP:
         case guest.ActionTypes.LOAD_SUCCESS: {
-            return Object.assign({}, state, {
-                editing: false
-            });
+            return  {
+                show: RsvpShowType.DONE
+            };
         }
 
         default: {
@@ -32,4 +36,4 @@ export function reducer(state = initialState, action: rsvp.Actions | guest.Actio
     }
 }
 
-export const isEditing = (state: State) => state.editing;
+export const isEditing = (state: State) => state.show;

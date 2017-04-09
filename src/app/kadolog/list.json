@@ -1,0 +1,24 @@
+{
+    "kadolog": {
+        "wine": {
+            "title": "Bouteille de vin",
+            "description": "Une petite bouteille de vin pour accompagner le repas",
+            "type": "FOOD"
+        },
+        "cheese": {
+            "title": "Un fromage",
+            "description": "Un petit fromage de vin pour accompagner le repas",
+            "type": "FOOD"
+        },
+        "help": {
+            "title": "Un petit coup de main",
+            "description": "N'hésitez pas à venir nous aider pour la préparation du mariage",
+            "type": "FREE"
+        },
+        "travel": {
+            "title": "Participation au voyage de noces",
+            "description": "Qui dit mariage, dit voyage. Si vous voulez participer à notre voyage de noce...blablabla",
+            "type": "FREE"
+        }
+    }
+}

@@ -18,11 +18,11 @@ export function reducer(state = initialState, action: Actions): State {
 
         case ActionTypes.LOAD_LIST_SUCCESS: {
             return Object.assign({}, state, {
-                guests: action.payload
+                kadolog: action.payload
             });
         }
 
-        case ActionTypes.EDIT: {
+        case ActionTypes.SHOW: {
             return Object.assign({}, state, {
                 editing: true
             });
