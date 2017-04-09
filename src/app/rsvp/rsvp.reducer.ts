@@ -36,4 +36,4 @@ export function reducer(state = initialState, action: rsvp.Actions | guest.Actio
     }
 }
 
-export const isEditing = (state: State) => state.show;
+export const show = (state: State) => state.show;

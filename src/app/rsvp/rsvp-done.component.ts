@@ -12,14 +12,14 @@ import {Guest} from "../guest/guest.model";
             Si il y a des modifications, nous vous tiendrons informé via email à l'adresse {{guest?.email}}
         </p>
         <p class="mb-0">
-            <button class="btn btn-primary btn-sm" (click)="editRsvp.emit()">Modifier votre RSVP</button>
+            <button class="btn btn-primary btn-sm" (click)="showSaveForm.emit()">Modifier votre RSVP</button>
         </p>
     `
 })
 export class RsvpDoneComponent {
 
     @Input() guest: Guest;
-    @Output() editRsvp = new EventEmitter();
+    @Output() showSaveForm = new EventEmitter();
 
     constructor() {
 

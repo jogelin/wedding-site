@@ -1,12 +1,12 @@
 import {Action} from "@ngrx/store";
 import {type} from "../shared/util";
-import {Kado} from "./kadolog.model";
+import {Kado, KadologShowType} from "./kadolog.model";
 
 export const ActionTypes = {
     LOAD_LIST: type('[Kadolog] Load List'),
     LOAD_LIST_SUCCESS: type('[Kadolog] Load List success'),
     LOAD_LIST_FAIL: type('[Kadolog] Load List Fail'),
-    SHOW: type('[Kadolog] Edit')
+    SHOW: type('[Kadolog] Show')
 };
 
 export class LoadListAction implements Action {
@@ -31,11 +31,10 @@ export class LoadListFailAction implements Action {
     }
 }
 
-export class EditAction implements Action {
+export class KadologShowAction implements Action {
     type = ActionTypes.SHOW;
-    payload;
 
-    constructor() {
+    constructor(public payload: KadologShowType) {
     }
 }
 
@@ -43,4 +42,4 @@ export type Actions
     = LoadListAction
     | LoadListSuccessAction
     | LoadListFailAction
-    | EditAction;
+    | KadologShowAction;

@@ -1,15 +1,14 @@
 import {Actions, ActionTypes} from "./kadolog.actions";
-import {Kado} from "./kadolog.model";
-
+import {Kado, KadologShowType} from "./kadolog.model";
 
 export interface State {
     kadolog: Kado[];
-    editing: boolean;
+    show: KadologShowType;
 }
 
 export const initialState: State = {
     kadolog: [],
-    editing: true
+    show: KadologShowType.SAVE_FORM
 };
 
 export function reducer(state = initialState, action: Actions): State {
@@ -24,7 +23,7 @@ export function reducer(state = initialState, action: Actions): State {
 
         case ActionTypes.SHOW: {
             return Object.assign({}, state, {
-                editing: true
+                show: action.payload as KadologShowType
             });
         }
 
@@ -40,4 +39,4 @@ export function reducer(state = initialState, action: Actions): State {
 }
 
 export const getKadolog = (state: State) => state.kadolog;
-export const isEditing = (state: State) => state.editing;
+export const show = (state: State) => state.show;

@@ -10,14 +10,14 @@ import {Kado} from "./kadolog.model";
             Un énorme merci pour votre participation
         </p>
         <p class="mb-0">
-            <button class="btn btn-primary btn-sm" (click)="editKadolog.emit()">Modifier votre participation</button>
+            <button class="btn btn-primary btn-sm" (click)="showSaveForm.emit()">Modifier votre participation</button>
         </p>
     `
 })
 export class KadologDoneComponent {
 
     @Input() kadolog: Kado[];
-    @Output() editKadolog = new EventEmitter();
+    @Output() showSaveForm = new EventEmitter();
 
     constructor() {
 

@@ -19,7 +19,6 @@
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "wg",
             "styles": [
-                "../node_modules/bootstrap/scss/bootstrap.scss",
                 "styles.scss"
             ],
             "scripts": [

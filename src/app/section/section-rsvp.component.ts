@@ -15,7 +15,7 @@ import {RsvpShowType} from "../rsvp/rsvp.reducer";
                 <wg-rsvp-form [ngSwitch]="show$ | async">
                     <wg-rsvp-form-save *ngSwitchCase="rsvpShowType.SAVE_FORM" [guest]="guest$ | async" (saveRsvp)="handleSaveRsvp($event)" (showLoadForm)="handleShowLoadForm($event)"></wg-rsvp-form-save>
                     <wg-rsvp-form-load *ngSwitchCase="rsvpShowType.LOAD_FORM" (loadRsvp)="handleLoadRsvp($event)" (showSaveForm)="handleShowSaveForm($event)"></wg-rsvp-form-load>
-                    <wg-rsvp-done *ngSwitchCase="rsvpShowType.DONE" [guest]="guest$ | async" (editRsvp)="handleShowSaveForm($event)"></wg-rsvp-done>
+                    <wg-rsvp-done *ngSwitchCase="rsvpShowType.DONE" [guest]="guest$ | async" (showSaveForm)="handleShowSaveForm($event)"></wg-rsvp-done>
                 </wg-rsvp-form>
             </div>
         </section>
@@ -33,13 +33,12 @@ export class SectionRsvpComponent implements OnInit {
     ngOnInit(): void {
         this.guest$ = this._store.select(fromRoot.getCurrentGuest);
 
-        this.show$ = this._store.select(fromRoot.isEditingRsvp);
+        this.show$ = this._store.select(fromRoot.getShowRsvp);
 
         this._store.dispatch(new guest.LoadFromLocalAction());
     }
 
     handleShowSaveForm() {
-        console.log('sdfsdf');
         this._store.dispatch(new rsvp.RsvpShowAction(RsvpShowType.SAVE_FORM));
     }
 

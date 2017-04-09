@@ -25,14 +25,14 @@ import {AngularFire, AuthMethods, AuthProviders} from "angularfire2";
 })
 export class AppComponent implements OnInit {
 
-    unConstruction:boolean = true;
+    unConstruction:boolean = false;
 
     constructor(private _store: Store<fromRoot.State>, public _af: AngularFire) {
 
     }
 
     ngOnInit(): void {
-        this.unConstruction = environment.production;
+        //this.unConstruction = environment.production;
 
         this._af.auth.login({
             provider: AuthProviders.Anonymous,

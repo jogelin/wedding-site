@@ -7,7 +7,6 @@ import * as fromScope from "./scope/scope.reducer";
 import * as fromRsvp from "./rsvp/rsvp.reducer";
 import * as fromKadolog from "./kadolog/kadolog.reducer";
 import {createSelector} from "reselect";
-import {GuestKado} from "./guest/guest.model";
 
 export interface State {
     guest: fromGuest.State;
@@ -42,16 +41,16 @@ export const isTadaaam = createSelector(getScope, (scope) => scope === 'tadaaam'
 export const isTadaam = createSelector(getScope, isTadaaam, (scope, isTadaaam) => isTadaaam || scope === 'tadaam');
 export const isTadam = createSelector(getScope, isTadaam, (scope, isTadaam) => isTadaam || scope === 'tadam');
 
+
+//RSVP
+export const getRsvpState = (state: State) => state.rsvp;
+export const getShowRsvp = createSelector(getRsvpState, fromRsvp.show);
+
 //KADOLOG
 export const getKadologState = (state: State) => state.kadolog;
 
 export const getKadolog = createSelector(getKadologState, fromKadolog.getKadolog);
-export const isEditingKadolog = createSelector(getKadologState, fromKadolog.isEditing);
-
-//RSVP
-export const getRsvpState = (state: State) => state.rsvp;
-
-export const isEditingRsvp = createSelector(getRsvpState, fromRsvp.isEditing);
+export const getShowKadolog = createSelector(getKadologState, fromKadolog.show);
 
 //GUEST
 export const getGuestState = (state: State) => state.guest;
@@ -63,15 +62,4 @@ export const getCurrentGuest = createSelector(getGuests, getCurrentKey, (guests,
     return guests.some(filter) ? guests.filter(filter)[0] : null;
 });
 export const guestHasRsvped = createSelector(getCurrentKey, currentKey => currentKey !== null);
-export const getGuestKadolog = createSelector(getKadolog, getCurrentGuest, (kadolog, currentGuest) => {
-
-    if(currentGuest === null) {
-        return kadolog;
-    }
-
-    return kadolog
-        .map(kado => Object.assign({}, kado, {
-            participate: (currentGuest.kadoKeys && currentGuest.kadoKeys.includes(kado.$key))
-        }) as GuestKado)
-}
-);
+export const getCurrentGuestKadoKeys = createSelector(getCurrentGuest, (currentGuest) => currentGuest && currentGuest.kadoKeys ? currentGuest.kadoKeys:[]);
