@@ -11,7 +11,7 @@ import {AngularFire, AuthMethods, AuthProviders} from "angularfire2";
     
     `],
     template: `        
-        <div class="h-100" ngsRevealSet [ngsSelector]="'.row'"> 
+        <div class="h-100"> 
             <router-outlet></router-outlet>
         </div>
     `

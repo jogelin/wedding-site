@@ -5,7 +5,7 @@ import {Component} from "@angular/core";
     selector: 'wg-kadolog-form',
     template: `
         <div class="row">
-            <div class="col-sm-12 col-md-4 offset-md-4">
+            <div class="col-sm-12 col-md-4 offset-md-4 text-center">
                 <h3>Envie de participer ?</h3>
             </div>
         </div>

@@ -37,7 +37,7 @@ $bgContact: #34434C;
     background-color: $bgWhere;
 }
 
-:host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp {
+:host /deep/ #civil, :host /deep/ #celeb, :host /deep/ #soiree, :host /deep/ #rsvp, :host /deep/ #kadolog {
     color: white;
     text-align: center;
     @extend .font-pompiere;
@@ -66,7 +66,10 @@ $bgContact: #34434C;
 :host /deep/ #kadolog {
     background-color: $bgGift;
     color: black;
-
+    text-align: left;
+    .card-text {
+        font-size:18px;
+    }
 }
 
 #contact {

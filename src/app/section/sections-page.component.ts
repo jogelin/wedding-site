@@ -12,7 +12,7 @@ import {UpdateAction} from "../scope/scope.actions";
         <section id="aline-et-jonathan">
             <div class="d-flex flex-column justify-content-start align-items-stretch align-content-stretch h-100 w-100">
                 <div id="fanion"></div>
-                <div class="d-flex align-content-center" style="flex: 1">
+                <div class="d-flex align-content-center" style="flex: 1" ngsReveal>
                     <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 align-self-center">
                         <img src="../../assets/aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
                     </div>
@@ -28,13 +28,13 @@ import {UpdateAction} from "../scope/scope.actions";
             <div class="container">
                 <div class="row mb-4">
                     <div class="col-sm-12 col-md-10 offset-md-1">
-                        <img src="../../assets/vous_invit.svg" class="img-fluid" alt="Responsive image">
+                        <img src="../../assets/vous_invit.svg" class="img-fluid" alt="Responsive image" ngsReveal>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-10 offset-md-1">
-                        <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image">
-                    </div>
+                        <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image" ngsReveal>
+                    </div> 
                 </div>
             </div>
         </section>

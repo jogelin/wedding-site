@@ -4,7 +4,7 @@ import {Component, Input} from "@angular/core";
     selector: 'wg-kadolog-not-available',
     template: `
         <p>
-            Pour des raisons technico-pratiques, merci de d'abord rsvp.
+            Pour des raisons technico-pratiques, pouvez-vous commencer par RSVP ? Merci ;-)
         </p>
     `
 })
