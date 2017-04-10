@@ -8,6 +8,7 @@ import * as fromRsvp from './rsvp/rsvp.reducer';
 import * as fromKadolog from './kadolog/kadolog.reducer';
 import {createSelector} from 'reselect';
 import {KadoReport} from './admin/admin.model';
+import {KadoType} from "./kadolog/kadolog.model";
 
 export interface State {
     guest: fromGuest.State;
@@ -51,6 +52,13 @@ export const getShowRsvp = createSelector(getRsvpState, fromRsvp.show);
 export const getKadologState = (state: State) => state.kadolog;
 
 export const getKadolog = createSelector(getKadologState, fromKadolog.getKadolog);
+export const getScopedKadolog = createSelector(getKadolog, isTadaaam, isTadaaam, isTadaaam, (kadolog, isTadaaam, isTadaam, isTadam) => {
+    if (isTadaaam || isTadaam) {
+        return kadolog;
+    } else if (isTadaam) {
+        return kadolog.filter(kado => kado.type !== 'FOOD')
+    }
+});
 export const getShowKadolog = createSelector(getKadologState, fromKadolog.show);
 
 //GUEST
@@ -63,6 +71,10 @@ export const getCurrentGuest = createSelector(getGuests, getCurrentKey, (guests,
     return guests.some(filter) ? guests.filter(filter)[0] : null;
 });
 export const guestHasRsvped = createSelector(getCurrentKey, currentKey => currentKey !== null);
+export const guestHasKatologed = createSelector(getCurrentGuest, guestHasRsvped, (currentGuest, guestHasRsvped) => {
+        return guestHasRsvped && currentGuest !== null && currentGuest.kadoKeys !== undefined;
+    }
+);
 export const getCurrentGuestKado = createSelector(getCurrentGuest, getKadolog, (currentGuest, kadolog) => {
     if (currentGuest == null || !currentGuest.kadoKeys) {
         return [];
@@ -75,7 +87,7 @@ export const getKadologReport = createSelector(getGuests, getKadolog, (guests, k
         .map(kado => {
             return {
                 kado: kado,
-                guests: guests.filter(guest => guest.kadoKeys?guest.kadoKeys.includes(kado.$key):false)
+                guests: guests.filter(guest => guest.kadoKeys ? guest.kadoKeys.includes(kado.$key) : false)
             } as KadoReport;
         })
 });

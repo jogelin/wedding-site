@@ -9,6 +9,12 @@ import {Kado} from "./kadolog.model";
         <p>
             Un énorme merci pour votre participation
         </p>
+        <ul class="fa-ul mt-2">
+            <li *ngFor="let kado of currentGuestKado">
+                <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i>
+                {{kado.title}}
+            </li>
+        </ul>
         <p class="mb-0">
             <button class="btn btn-primary btn-sm" (click)="showSaveForm.emit()">Modifier votre participation</button>
         </p>
@@ -16,7 +22,7 @@ import {Kado} from "./kadolog.model";
 })
 export class KadologDoneComponent {
 
-    @Input() kadolog: Kado[];
+    @Input() currentGuestKado: Kado[];
     @Output() showSaveForm = new EventEmitter();
 
     constructor() {

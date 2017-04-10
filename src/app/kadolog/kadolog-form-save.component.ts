@@ -37,11 +37,11 @@ import {Kado} from "./kadolog.model";
                             <strong>Panier</strong>
                             <ul class="fa-ul mt-2">
                                 <li *ngFor="let kado of kados.value">
-                                    <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i>
+                                    <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i> 
                                     {{kado.title}}
                                 </li>
                             </ul>
-                            <button [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed> 
+                            <button class="btn btn-primary btn-block" #confirmed> 
                                 Je valide !
                             </button> 
                         </div>
@@ -49,8 +49,6 @@ import {Kado} from "./kadolog.model";
                 </div>
             </div>
         </form>
-        {{form.value | json}}
-        {{currentGuestKado | json}}
     `
 })
 export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
@@ -64,6 +62,10 @@ export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
     form: FormGroup;
 
     constructor(private _fb: FormBuilder) {
+        this.initForm();
+    }
+
+    private initForm() {
         this.form = this._fb.group({
             kados: this._fb.array([])
         });
@@ -76,7 +78,9 @@ export class KadologFormSaveComponent implements OnChanges, AfterViewInit {
 
     ngOnChanges(changes: SimpleChanges): void {
         if (changes['currentGuestKado'] && changes['currentGuestKado'].currentValue && JSON.stringify(changes['currentGuestKado'].previousValue) !== JSON.stringify(changes['currentGuestKado'].currentValue)) {
-            this.kados.setValue(changes['currentGuestKado'].currentValue);
+            this.initForm();
+            changes['currentGuestKado'].currentValue
+                .forEach(kado => this.kados.push(this._fb.control(kado)));
         }
     }
 

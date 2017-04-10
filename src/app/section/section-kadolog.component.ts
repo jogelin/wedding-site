@@ -5,6 +5,7 @@ import {Store} from "@ngrx/store";
 import {Kado, KadologShowType} from "../kadolog/kadolog.model";
 import {KadologShowAction} from "../kadolog/kadolog.actions";
 import * as guest from "../guest/guest.actions";
+import {guestHasKatologed} from "../app.reducer";
 
 @Component({
     selector: 'wg-section-kadolog',
@@ -18,7 +19,7 @@ import * as guest from "../guest/guest.actions";
                                           [currentGuestKado]="currentGuestKado$ | async"
                                           (saveKadolog)="handleSaveKadolog($event)">
                     </wg-kadolog-form-save>
-                    <wg-kadolog-done *ngSwitchCase="kadologShowType.DONE" [kadolog]="guestKadolog$ | async" (showSaveForm)="handleShowSaveForm($event)"></wg-kadolog-done>
+                    <wg-kadolog-done *ngSwitchCase="kadologShowType.DONE" [currentGuestKado]="currentGuestKado$ | async" (showSaveForm)="handleShowSaveForm($event)"></wg-kadolog-done>
                 </wg-kadolog-form>
             </div>
         </section>
@@ -41,23 +42,37 @@ export class SectionKadologComponent implements OnInit {
         this.show$ = this._store.select(fromRoot.getShowKadolog);
 
         this.initHandleShowNotAvailable();
-
     }
 
     initHandleShowNotAvailable() {
-        this._store.select(fromRoot.guestHasRsvped)
-            .do((dd) => console.log(dd))
-            .subscribe(guestHasRsvped => {
-                if (guestHasRsvped) {
-                    this.handleShowSaveForm();
-                } else {
-                    this._store.dispatch(new KadologShowAction(KadologShowType.NOT_AVAILABLE))
+        const guestHasRsvped$ = this._store.select(fromRoot.guestHasRsvped);
+        const guestHasKatologed$ = this._store.select(fromRoot.guestHasKatologed);
+
+        guestHasRsvped$.subscribe((val) => console.log('nbf',val));//dfgdfgdfgdfgfddfg
+        guestHasKatologed$.subscribe((val) => console.log('nb',val));
+
+        guestHasRsvped$
+            .do(guestHasRsvped => {
+                if (!guestHasRsvped) {
+                    this.handleShowNotAvailable();
                 }
-            });
+            })
+            .withLatestFrom(guestHasKatologed$)
+            .map(([guestHasRsvped, guestHasKatologed]) => guestHasRsvped && guestHasKatologed)
+            .filter((guestHasKatologed) => guestHasKatologed)
+            .subscribe(() => this.handleShowDoneForm());
+    }
+
+    handleShowNotAvailable() {
+        this._store.dispatch(new KadologShowAction(KadologShowType.NOT_AVAILABLE));
     }
 
     handleShowSaveForm() {
         this._store.dispatch(new KadologShowAction(KadologShowType.SAVE_FORM));
+    }
+
+    handleShowDoneForm() {
+        this._store.dispatch(new KadologShowAction(KadologShowType.DONE));
     }
 
     handleSaveKadolog(kado: Kado[]) {

@@ -75,6 +75,7 @@ $bgContact: #34434C;
 #contact {
     background-color: $bgContact;
     padding: 0.5rem 0;
+    @extend .font-pompiere;
     a {
         color: white;
         font-size: 1.2rem;

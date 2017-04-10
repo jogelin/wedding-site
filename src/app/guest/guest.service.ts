@@ -72,7 +72,9 @@ export class GuestService extends FirebaseGenericService<Guest> {
                     currentGuest, {
                         kadoKeys: newKadoKeys
                     }) as Guest;
-                return this.update(currentGuest.$key, newGuest);
+                return this.update(currentGuest.$key, {
+                    kadoKeys: newKadoKeys
+                }as Guest);
             })
             .switch();
     }
