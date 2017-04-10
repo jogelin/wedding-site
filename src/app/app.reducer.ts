@@ -1,12 +1,13 @@
-import {ActionReducer, combineReducers} from "@ngrx/store";
-import {environment} from "../environments/environment";
-import {compose} from "@ngrx/core/compose";
-import {storeFreeze} from "ngrx-store-freeze";
-import * as fromGuest from "./guest/guest.reducer";
-import * as fromScope from "./scope/scope.reducer";
-import * as fromRsvp from "./rsvp/rsvp.reducer";
-import * as fromKadolog from "./kadolog/kadolog.reducer";
-import {createSelector} from "reselect";
+import {ActionReducer, combineReducers} from '@ngrx/store';
+import {environment} from '../environments/environment';
+import {compose} from '@ngrx/core/compose';
+import {storeFreeze} from 'ngrx-store-freeze';
+import * as fromGuest from './guest/guest.reducer';
+import * as fromScope from './scope/scope.reducer';
+import * as fromRsvp from './rsvp/rsvp.reducer';
+import * as fromKadolog from './kadolog/kadolog.reducer';
+import {createSelector} from 'reselect';
+import {KadoReport} from './admin/admin.model';
 
 export interface State {
     guest: fromGuest.State;
@@ -63,8 +64,19 @@ export const getCurrentGuest = createSelector(getGuests, getCurrentKey, (guests,
 });
 export const guestHasRsvped = createSelector(getCurrentKey, currentKey => currentKey !== null);
 export const getCurrentGuestKado = createSelector(getCurrentGuest, getKadolog, (currentGuest, kadolog) => {
-    if(currentGuest == null || !currentGuest.kadoKeys) {
+    if (currentGuest == null || !currentGuest.kadoKeys) {
         return [];
     }
     return kadolog.filter(kado => currentGuest.kadoKeys.includes(kado.$key));
 });
+
+export const getKadologReport = createSelector(getGuests, getKadolog, (guests, kadolog) => {
+    return kadolog
+        .map(kado => {
+            return {
+                kado: kado,
+                guests: guests.filter(guest => guest.kadoKeys?guest.kadoKeys.includes(kado.$key):false)
+            } as KadoReport;
+        })
+});
+

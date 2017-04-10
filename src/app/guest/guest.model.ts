@@ -13,7 +13,3 @@ export class Guest extends FirebaseEntity {
         Object.assign(this, opt);
     }
 }
-
-export interface GuestKado extends Kado {
-    participate: boolean;
-}

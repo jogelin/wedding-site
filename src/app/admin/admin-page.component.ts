@@ -3,6 +3,7 @@ import {Observable} from "rxjs";
 import {Guest} from "../guest/guest.model";
 import * as fromRoot from "../app.reducer";
 import {Store} from "@ngrx/store";
+import {KadoReport} from './admin.model';
 
 
 @Component({
@@ -11,11 +12,12 @@ import {Store} from "@ngrx/store";
             <div class="container">
                 <div class="row">
                     <div class="col">
-                        <wg-guest-list></wg-guest-list>
+                        <wg-guest-list [guests]="guests$ | async"></wg-guest-list>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
+                        <wg-kadolog-report [kadologReport]="kadologReport$ | async"></wg-kadolog-report>
                     </div>
                 </div>
             </div> 
@@ -23,12 +25,14 @@ import {Store} from "@ngrx/store";
 })
 export class AdminPageComponent implements OnInit {
 
-    guest$: Observable<Guest[]>;
+    guests$: Observable<Guest[]>;
+    kadologReport$: Observable<KadoReport[]>;
 
     constructor(private _store: Store<fromRoot.State>) {
     }
 
     ngOnInit(): void {
-        this.guest$ = this._store.select(fromRoot.getGuests);
+        this.guests$ = this._store.select(fromRoot.getGuests);
+        this.kadologReport$ = this._store.select(fromRoot.getKadologReport);
     }
 }
