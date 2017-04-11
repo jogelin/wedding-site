@@ -32,8 +32,8 @@ export interface Map {
             <div class="container">
                 <div class="row">
                     <div class="col-sm-12">
-                        <div class="card-deck" ngsRevealSet [ngsSelector]="'.card'" [ngsInterval]="50">
-                            <div class="card mb-1" *ngFor="let map of maps">
+                        <div class="card-deck">
+                            <div class="card mb-1" *ngFor="let map of maps" ngsReveal>
                                 <sebm-google-map [latitude]="map.lat" [longitude]="map.lng" [zoom]="map.zoom" [scrollwheel]="false">
                                     <sebm-google-map-marker
                                         *ngFor="let m of map.markers"

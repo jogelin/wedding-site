@@ -51,16 +51,22 @@ export class SectionKadologComponent implements OnInit {
         guestHasRsvped$.subscribe((val) => console.log('nbf',val));//dfgdfgdfgdfgfddfg
         guestHasKatologed$.subscribe((val) => console.log('nb',val));
 
-        guestHasRsvped$
-            .do(guestHasRsvped => {
+        Observable.combineLatest(
+            guestHasRsvped$,
+            guestHasKatologed$,
+            (guestHasRsvped, guestHasKatologed) => {
                 if (!guestHasRsvped) {
                     this.handleShowNotAvailable();
                 }
-            })
-            .withLatestFrom(guestHasKatologed$)
-            .map(([guestHasRsvped, guestHasKatologed]) => guestHasRsvped && guestHasKatologed)
-            .filter((guestHasKatologed) => guestHasKatologed)
-            .subscribe(() => this.handleShowDoneForm());
+                else if(!guestHasKatologed) {
+                    this.handleShowSaveForm();
+                }
+                else if(guestHasKatologed) {
+                    this.handleShowDoneForm();
+                }
+                return Observable.empty();
+            }
+        ).subscribe();
     }
 
     handleShowNotAvailable() {
