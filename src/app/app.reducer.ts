@@ -55,7 +55,7 @@ export const getKadolog = createSelector(getKadologState, fromKadolog.getKadolog
 export const getScopedKadolog = createSelector(getKadolog, isTadaaam, isTadaaam, isTadaaam, (kadolog, isTadaaam, isTadaam, isTadam) => {
     if (isTadaaam || isTadaam) {
         return kadolog;
-    } else if (isTadaam) {
+    } else if (isTadam) {
         return kadolog.filter(kado => kado.type !== 'FOOD')
     }
 });

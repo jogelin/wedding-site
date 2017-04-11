@@ -48,9 +48,6 @@ export class SectionKadologComponent implements OnInit {
         const guestHasRsvped$ = this._store.select(fromRoot.guestHasRsvped);
         const guestHasKatologed$ = this._store.select(fromRoot.guestHasKatologed);
 
-        guestHasRsvped$.subscribe((val) => console.log('nbf',val));//dfgdfgdfgdfgfddfg
-        guestHasKatologed$.subscribe((val) => console.log('nb',val));
-
         Observable.combineLatest(
             guestHasRsvped$,
             guestHasKatologed$,
