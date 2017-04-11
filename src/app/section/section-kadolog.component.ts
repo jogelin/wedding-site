@@ -36,7 +36,7 @@ export class SectionKadologComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.kadolog$ = this._store.select(fromRoot.getKadolog);
+        this.kadolog$ = this._store.select(fromRoot.getScopedKadolog);
         this.currentGuestKado$ = this._store.select(fromRoot.getCurrentGuestKado);
 
         this.show$ = this._store.select(fromRoot.getShowKadolog);
