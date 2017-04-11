@@ -53,6 +53,9 @@ export const getKadologState = (state: State) => state.kadolog;
 
 export const getKadolog = createSelector(getKadologState, fromKadolog.getKadolog);
 export const getScopedKadolog = createSelector(getKadolog, isTadaaam, isTadaaam, isTadaaam, (kadolog, isTadaaam, isTadaam, isTadam) => {
+    console.log("isTadaaam",isTadaaam);
+    console.log("isTadaam",isTadaam);
+    console.log("isTadam",isTadam);
     if (isTadaaam || isTadaam) {
         return kadolog;
     } else if (isTadam) {
