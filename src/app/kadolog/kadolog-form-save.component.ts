@@ -41,7 +41,7 @@ import {Kado} from "./kadolog.model";
                                     {{kado.title}}
                                 </li>
                             </ul>
-                            <button class="btn btn-primary btn-block" #confirmed> 
+                            <button type="button" class="btn btn-primary btn-block" #confirmed> 
                                 Je valide !
                             </button> 
                         </div>

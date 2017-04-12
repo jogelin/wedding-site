@@ -1,12 +1,12 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as fromRoot from "../app.reducer";
 import {UpdateAction} from "../scope/scope.actions";
 
-
 @Component({
     selector: 'wg-sections-page',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['sections-page.component.scss'],
     template: `
         <section id="aline-et-jonathan">

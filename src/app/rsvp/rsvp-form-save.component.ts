@@ -3,7 +3,7 @@ import {
     Component,
     EventEmitter,
     Input,
-    OnChanges,
+    OnChanges, OnDestroy,
     OnInit,
     Output,
     SimpleChanges,
@@ -13,6 +13,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Guest} from "../guest/guest.model";
 import {EMAIL_REGEX} from "../shared/util";
+import {UnsubscribeOnDestroy} from '../shared/unsubscribe-on-destroy';
 
 @Component({
     selector: 'wg-rsvp-form-save',
@@ -42,12 +43,12 @@ import {EMAIL_REGEX} from "../shared/util";
             </div>
             <div class="form-group row">
                 <div class="col-sm-4 col-md-5">
-                    <button [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed>
+                    <button type="button" [disabled]="form.invalid" class="btn btn-primary btn-block" #confirmed>
                         Je viens !
                     </button>
                 </div>
                 <div class="col-sm-2 col-md-3 mt-2 mt-sm-0">
-                    <button [disabled]="form.invalid" class="btn btn-outline-danger btn-block" #cancelled>
+                    <button type="button" [disabled]="form.invalid" class="btn btn-outline-danger btn-block" #cancelled>
                         Je ne viens pas...
                     </button>
                 </div>
@@ -60,7 +61,7 @@ import {EMAIL_REGEX} from "../shared/util";
         </form>
     `
 })
-export class RsvpFormSaveComponent implements OnInit, OnChanges, AfterViewInit {
+export class RsvpFormSaveComponent extends UnsubscribeOnDestroy implements OnInit, OnChanges, AfterViewInit {
 
     @ViewChild('confirmed') confirmed;
     @ViewChild('cancelled') cancelled;
@@ -72,6 +73,7 @@ export class RsvpFormSaveComponent implements OnInit, OnChanges, AfterViewInit {
     form: FormGroup;
 
     constructor(private _fb: FormBuilder) {
+        super();
         this.form = this._fb.group({
             name: ['', Validators.required],
             email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
@@ -93,6 +95,7 @@ export class RsvpFormSaveComponent implements OnInit, OnChanges, AfterViewInit {
         Observable.merge(
             Observable.fromEvent(this.confirmed.nativeElement, 'click').mapTo(true),
             Observable.fromEvent(this.cancelled.nativeElement, 'click').mapTo(false))
+            .takeUntil(this.componentDestroyed$)
             .do((val) => this.form.get('confirmed').setValue(val))
             .map((val) => this.form.value)
             .subscribe((guest) => {

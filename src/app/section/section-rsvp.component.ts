@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import * as fromRoot from "../app.reducer";
 import {Store} from "@ngrx/store";
@@ -9,6 +9,7 @@ import {RsvpShowType} from "../rsvp/rsvp.reducer";
 
 @Component({
     selector: 'wg-section-rsvp',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `
         <section id="rsvp" class="section-padding">
             <div class="container">

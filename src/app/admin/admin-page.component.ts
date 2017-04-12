@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {ChangeDetectionStrategy, Component, OnInit} from "@angular/core";
 import {Observable} from "rxjs";
 import {Guest} from "../guest/guest.model";
 import * as fromRoot from "../app.reducer";
@@ -8,6 +8,7 @@ import {KadoReport} from './admin.model';
 
 @Component({
     selector: 'wg-admin-page',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     template: `        
             <div class="container">
                 <div class="row">
