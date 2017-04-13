@@ -41,7 +41,7 @@ import {UpdateAction} from "../scope/scope.actions";
         <wg-section-part idi="civil" *ngIf="tadaaam$ | async">
             <div class="row">
                 <div class="col-sm-12">
-                    <p>Notre mariage civil se déroulera à l'hotel de Ville de la grand place de Bruxelles.</p>
+                    <p>Notre mariage civil se déroulera à l'hôtel de Ville de la Grand Place de Bruxelles.</p>
                     <p>Nous nous réunirons tous à 9h45 sur la place et il sera possible de garer 3 voitures devant.
                         (Nous vous tiendrons informés de l'organisation)</p>
                     <p>Une fois mariés sous vos yeux et ceux de la loi, direction Braine-Le-Comte pour un petit
@@ -66,7 +66,7 @@ import {UpdateAction} from "../scope/scope.actions";
                         cette journée ensoleillée avec vous! Nous aurons besoin de vous et de vos talents. En effet, le
                         repas du soir sera basé sur le principe de
                         l'auberge espagnole. Plus d'infos plus bas...</p>
-                    <p>Pour votre tenue, faites vous plaisir, rien de tel qu'un savant mélange de couleurs et de
+                    <p>Pour votre tenue, faites-vous plaisir, rien de tel qu'un savant mélange de couleurs et de
                         décontraction !</p>
                 </div>
             </div>
@@ -79,11 +79,11 @@ import {UpdateAction} from "../scope/scope.actions";
                     ensemble!
                 </div>
                 <div class="col-sm-4">
-                    Pour les plus vaillants, nous pourrons camper dans la coure de La Verrerie ou dormir dans la salle,
+                    Pour les plus vaillants, nous pourrons camper dans la cour de La Verrerie ou dormir dans la salle,
                     petit-déjeuner à la clé! ;)
                 </div>
                 <div class="col-sm-4">
-                    Le parking gratuit de la gare sera à votre diposition.
+                    Le parking gratuit de la gare sera à votre disposition.
                 </div>
             </div>
         </wg-section-part>

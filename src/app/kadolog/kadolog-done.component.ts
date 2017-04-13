@@ -20,7 +20,7 @@ import {DoneDescription, Kado} from './kadolog.model';
                 <hr class="hidden-sm-up">
                 Pour tout ce qui concerne le buffet, nous vous contacterons pour les détails pratiques.                
                 <hr>
-                Vous avez choisis de nous gâter, encore merci! <small>BE49 0017 9105 3971</small>
+                Vous avez choisi de nous gâter, encore merci! <small>BE49 0017 9105 3971</small>
                 <hr>
                 Vous pouvez effectuer vos dons sur <small>BE49 0017 9105 3971</small> pour l'association karibou en détresse
             </div>
