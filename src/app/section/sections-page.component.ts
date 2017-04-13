@@ -27,13 +27,13 @@ import {UpdateAction} from "../scope/scope.actions";
         <section id="where" class="section-padding">
             <div class="container">
                 <div class="row mb-4">
-                    <div class="col-sm-12 col-md-10 offset-md-1">
-                        <img src="../../assets/vous_invit.svg" class="img-fluid" alt="Responsive image" ngsReveal>
+                    <div class="col-sm-12 col-md-10 offset-md-1" ngsReveal>
+                        <img src="../../assets/vous_invit.svg" class="img-fluid" alt="Responsive image" >
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-10 offset-md-1">
-                        <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image" ngsReveal>
+                    <div class="col-sm-12 col-md-10 offset-md-1" ngsReveal>
+                        <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image" >
                     </div>
                 </div>
             </div>
