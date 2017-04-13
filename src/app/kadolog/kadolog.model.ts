@@ -11,3 +11,8 @@ export class Kado extends FirebaseEntity {
     description: boolean;
     type: KadoType;
 }
+
+export interface DoneDescription {
+    description: string;
+    kadoKeys: string[];
+}

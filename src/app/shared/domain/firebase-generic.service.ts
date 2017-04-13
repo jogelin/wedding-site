@@ -12,7 +12,11 @@ export class FirebaseGenericService<T extends FirebaseEntity> {
 
     constructor(api: string, private _af: AngularFire) {
         this.api = api;
-        this.firebaseList$ = _af.database.list(this.api);
+        this.firebaseList$ = _af.database.list(this.api, {
+            query: {
+                orderByChild: 'order'
+            }
+        });
     }
 
     loadAll(): Observable<T[]> {

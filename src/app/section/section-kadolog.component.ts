@@ -13,7 +13,7 @@ import {guestHasKatologed} from "../app.reducer";
     template: `
         <section id="kadolog" class="section-padding">
             <div class="container">
-                <wg-kadolog-form [ngSwitch]="show$ | async">
+                <wg-kadolog-form [ngSwitch]="show$ | async" [hasKadologed]="guestHasKatologed$ | async">
                     <wg-kadolog-not-available *ngSwitchCase="kadologShowType.NOT_AVAILABLE"></wg-kadolog-not-available>
                     <wg-kadolog-form-save *ngSwitchCase="kadologShowType.SAVE_FORM"
                                           [kadolog]="kadolog$ | async"
@@ -31,6 +31,8 @@ export class SectionKadologComponent implements OnInit {
     currentGuestKado$: Observable<Kado[]>;
     show$: Observable<KadologShowType>;
 
+    guestHasKatologed$: Observable<boolean>;
+
     kadologShowType = KadologShowType;
 
     constructor(private _store: Store<fromRoot.State>) {
@@ -42,16 +44,17 @@ export class SectionKadologComponent implements OnInit {
 
         this.show$ = this._store.select(fromRoot.getShowKadolog);
 
+        this.guestHasKatologed$ = this._store.select(fromRoot.guestHasKatologed);
+
         this.initHandleShowNotAvailable();
     }
 
     initHandleShowNotAvailable() {
         const guestHasRsvped$ = this._store.select(fromRoot.guestHasRsvped);
-        const guestHasKatologed$ = this._store.select(fromRoot.guestHasKatologed);
 
         Observable.combineLatest(
             guestHasRsvped$,
-            guestHasKatologed$,
+            this.guestHasKatologed$,
             (guestHasRsvped, guestHasKatologed) => {
                 if (!guestHasRsvped) {
                     this.handleShowNotAvailable();

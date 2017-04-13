@@ -34,7 +34,7 @@ import {UpdateAction} from "../scope/scope.actions";
                 <div class="row">
                     <div class="col-sm-12 col-md-10 offset-md-1">
                         <img src="../../assets/where.svg" class="img-fluid" alt="Responsive image" ngsReveal>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </section>
@@ -54,17 +54,18 @@ import {UpdateAction} from "../scope/scope.actions";
                 <div class="col-sm-12">
                     <p>A 14h00, la célébration de notre mariage se déroulera... en forêt, dans le bois de la Houssière à
                         Braine-le-comte.<br>
-                        Les bons souliers et les pantalons retroussés seront donc de mise ! Pensez à prévoir une paire
+                        Les souliers plats seront donc de mise ! Pensez à prévoir une paire
                         de rechange pour le reste de la journée au propre. <br>
-                        Un petit parking aux abords de la forêt sera à votre disposition. N'hésitez pas à vous
-                        rassembler au parking de la gare (idem salle) pour covoiturer vers le bois. </p>
+                        Un parking aux abords de la forêt sera à votre disposition. Il est trop petit pour acceuillir
+                        toutes les voitures. N'hésitez donc pas à vous rassembler au parking gratuit de la gare (idem
+                        salle) pour covoiturer vers le bois. </p>
                     <p>Nous pourrons ensuite trinquer à notre union à La Verrerie de Braine-Le-Comte et partager une
                         chouette journée tous ensemble.<br>
 
                         Notre plus grand plaisir serait de construire
                         cette journée ensoleillée avec vous! Nous aurons besoin de vous et de vos talents. En effet, le
                         repas du soir sera basé sur le principe de
-                        l'auberge espagnole. Plus d'infos sur ....</p>
+                        l'auberge espagnole. Plus d'infos plus bas...</p>
                     <p>Pour votre tenue, faites vous plaisir, rien de tel qu'un savant mélange de couleurs et de
                         décontraction !</p>
                 </div>
@@ -79,7 +80,7 @@ import {UpdateAction} from "../scope/scope.actions";
                 </div>
                 <div class="col-sm-4">
                     Pour les plus vaillants, nous pourrons camper dans la coure de La Verrerie ou dormir dans la salle,
-                    petit-déjeuner à la clé!
+                    petit-déjeuner à la clé! ;)
                 </div>
                 <div class="col-sm-4">
                     Le parking gratuit de la gare sera à votre diposition.
@@ -91,7 +92,7 @@ import {UpdateAction} from "../scope/scope.actions";
         <wg-section-kadolog></wg-section-kadolog>
         <section id="contact">
             <div class="container">
-                <div class="row text-center py-3">
+                <div class="row text-center py-2">
                     <div class="col-sm-4 offset-sm-4">
                         <img src="../../assets/footer_aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
                         <img src="../../assets/footer_address.svg" class="img-fluid" alt="Responsive image">

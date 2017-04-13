@@ -1,50 +1,51 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Kado} from './kadolog.model';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {DoneDescription, Kado} from './kadolog.model';
 
 @Component({
     selector: 'wg-kadolog-done',
     template: `
-        <div class="row">
-            <div class="col text-center">
-                <h3>Participation enregistrée!</h3>
-                <p>
-                    Un énorme merci pour votre participation
-                </p>      
-            </div>
-        </div>
         <div class="row justify-content-md-center">
             <div class="col-sm-4" ngsReveal>
-                <hr> 
-                Pour les participations d'ordre financière:<br> BE66 0000 0000 0000
-                <hr>                
-                Pour les participations de miam miam, nous vous recontacterons pour les détails pratiques
+                <hr class="hidden-sm-up">
+                <h3>Participation enregistrée!</h3>
+                <strong>
+                    Un énorme merci pour votre participation.
+                </strong>
+                <hr>
+                Nous sommes impatients de partager cette merveilleuse journée avec vous!
+                <hr>
+                N'hésitez pas à nous contacter si vous avez la moindre question ;-)
+            </div>
+            <div class="col-sm-4" ngsReveal>
+                <hr class="hidden-sm-up">
+                Pour tout ce qui concerne le buffet, nous vous contacterons pour les détails pratiques.                
+                <hr>
+                Vous avez choisis de nous gâter, encore merci! <small>BE49 0017 9105 3971</small>
+                <hr>
+                Vous pouvez effectuer vos dons sur <small>BE49 0017 9105 3971</small> pour l'association karibou en détresse
             </div>
             <div class="col-sm-4 flex-first flex-sm-unordered" ngsReveal>
                 <div class="card card-basket">
-                    <div class="row"> 
+                    <div class="row">
                         <div class="col">
                             <ul class="fa-ul mt-2">
                                 <li *ngFor="let kado of currentGuestKado">
                                     <i class="fa-li fa" [ngClass]="'fa-'+kado.$key"></i>
-                                    {{kado.title}} 
-                                </li> 
+                                    {{kado.title}}
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm text-center">
                             <p>
-                                <button class="btn btn-primary btn-sm" (click)="showSaveForm.emit()">Modifier votre participation</button>
+                                <button class="btn btn-primary btn-sm" (click)="showSaveForm.emit()">Modifier votre
+                                    participation
+                                </button>
                             </p>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-4" ngsReveal>
-                <hr> 
-                Pour les participations d'ordre financière:<br> BE66 0000 0000 0000
-                <hr>                
-                Pour les participations de miam miam, nous vous recontacterons pour les détails pratiques
             </div>
         </div>
     `
@@ -55,6 +56,5 @@ export class KadologDoneComponent {
     @Output() showSaveForm = new EventEmitter();
 
     constructor() {
-
     }
 }
