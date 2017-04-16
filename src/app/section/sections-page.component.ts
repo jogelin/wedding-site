@@ -96,7 +96,7 @@ import {UpdateAction} from "../scope/scope.actions";
                     <div class="col-sm-4 offset-sm-4">
                         <img src="../../assets/footer_aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
                         <img src="../../assets/footer_address.svg" class="img-fluid" alt="Responsive image">
-                        <a href="mailto:jo-et-aline-tadaaam@gmail.com">jo-et-aline-tadaaam@gmail.com</a>
+                        <a href="mailto:jo.et.aline.tadaaam@gmail.com">jo.et.aline.tadaaam@gmail.com</a>
                     </div>
                 </div>
             </div>
