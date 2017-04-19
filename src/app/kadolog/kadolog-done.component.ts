@@ -22,7 +22,7 @@ import {DoneDescription, Kado} from './kadolog.model';
                 <hr>
                 Vous avez choisi de nous gâter, encore merci! <small>BE49 0017 9105 3971</small>
                 <hr>
-                Vous pouvez effectuer vos dons sur <small>BE49 0017 9105 3971</small> pour l'association karibou en détresse
+                Pour l'association, vous pouvez trouver plus d'informations sur le site <a target="_blank" href="https://aideautiersmonde.cathocambrai.com/">"Aide aux missions"</a>. Si vous voulez participer, vous pouvez effectuer un don sur <small>BE49 0017 9105 3971</small>
             </div>
             <div class="col-sm-4 flex-first flex-sm-unordered" ngsReveal>
                 <div class="card card-basket">
