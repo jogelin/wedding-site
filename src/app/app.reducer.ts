@@ -79,7 +79,7 @@ export const getCurrentGuestKado = createSelector(getCurrentGuest, getKadolog, (
     if (currentGuest == null || !currentGuest.kadoKeys) {
         return [];
     }
-    return kadolog.filter(kado => currentGuest.kadoKeys.includes(kado.$key));
+    return kadolog.filter(kado => currentGuest.kadoKeys.indexOf(kado.$key) !== -1);
 });
 
 export const getKadologReport = createSelector(getGuests, getKadolog, (guests, kadolog) => {
@@ -87,7 +87,7 @@ export const getKadologReport = createSelector(getGuests, getKadolog, (guests, k
         .map(kado => {
             return {
                 kado: kado,
-                guests: guests.filter(guest => guest.kadoKeys ? guest.kadoKeys.includes(kado.$key) : false)
+                guests: guests.filter(guest => guest.kadoKeys ? guest.kadoKeys.indexOf(kado.$key) !== -1 : false)
             } as KadoReport;
         })
 });

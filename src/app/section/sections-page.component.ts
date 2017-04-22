@@ -14,7 +14,7 @@ import {UpdateAction} from "../scope/scope.actions";
                 <div id="fanion"></div>
                 <div class="d-flex align-content-center" style="flex: 1" ngsReveal>
                     <div class="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4 align-self-center">
-                        <img src="../../assets/aline_et_jonathan.svg" class="img-fluid" alt="Responsive image">
+                        <img src="../../assets/aline_et_jonathan.svg" class="img-responsive img-fluid" alt="Responsive image">
                     </div>
                 </div>
                 <div>
