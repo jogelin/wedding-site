@@ -22,7 +22,9 @@ import {DoneDescription, Kado} from './kadolog.model';
                 <hr>
                 Vous avez choisi de nous gâter, encore merci! <small>BE49 0017 9105 3971</small>
                 <hr>
-                Pour l'association, vous pouvez trouver plus d'informations sur le site <a target="_blank" href="https://aideautiersmonde.cathocambrai.com/">"Aide aux missions"</a>. Si vous voulez participer, vous pouvez effectuer un don sur <small>BE49 0017 9105 3971</small>
+                Pour l'association, vous pouvez trouver plus d'informations sur le site <a target="_blank" href="https://aideautiersmonde.cathocambrai.com/">"Aide aux missions"</a>.<br>
+                Si vous voulez participer, vous pouvez effectuer un don sur:<br>
+                <small>IBAN FR76 3000 4005 2600 0100 1910 790<br>BIC BNPA FR PP XXX</small>
             </div>
             <div class="col-sm-4 flex-first flex-sm-unordered" ngsReveal>
                 <div class="card card-basket">

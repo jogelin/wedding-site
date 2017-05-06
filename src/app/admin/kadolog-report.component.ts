@@ -11,7 +11,7 @@ import {KadoReport} from './admin.model';
             padding-left:0;
         }
         li {
-            list-style-type: none;
+            white-space:nowrap;
         }
     `],
     template: `
@@ -37,9 +37,9 @@ import {KadoReport} from './admin.model';
                             </td>
                             <td>
                                 <ul>
-                                    <div *ngFor="let guest of kadoReport.guests">
+                                    <li *ngFor="let guest of kadoReport.guests">
                                         {{guest.name}}
-                                    </div>
+                                    </li>
                                 </ul>
                             </td>
                             <td>
