@@ -44,7 +44,7 @@ import {KadoReport} from './admin.model';
                             </td>
                             <td>
                                 <span *ngFor="let guest of kadoReport.guests">
-                                    {{guest.name}} &lsaquo;{{guest.email}}&rsaquo;;
+                                    {{guest.email}};
                                 </span>
                             </td>
                         </tr>
